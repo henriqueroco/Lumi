@@ -4,18 +4,23 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 import br.com.lumi.model.Localidade;
 
 import javax.persistence.ManyToOne;
+
 import br.com.lumi.model.Logradouro;
+
 import java.util.Set;
 import java.util.HashSet;
+
 import javax.persistence.OneToMany;
 
 @Entity
@@ -26,7 +31,7 @@ public class Bairro implements Serializable {
 	private static final String ATRIBUTO_ID = "id";
 	private static final String VERSAO = "version";
 	private static final String ATRIBUTO_DESCRICAO_BAIRRO = "descricao_bairro";
-	private static final String ATRIBUTO_ID_LOCALIDADE = "id_localidade";
+	static final String ATRIBUTO_ID_LOCALIDADE = "id_localidade";
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
@@ -38,10 +43,13 @@ public class Bairro implements Serializable {
 	@Column(name = ATRIBUTO_DESCRICAO_BAIRRO, nullable = false)
 	private String descricaoBairro;
 
-	@ManyToOne
-	// XXX
-	private Localidade localidade;
+//	@ManyToOne
+//	private Localidade localidade;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = ATRIBUTO_ID_LOCALIDADE, insertable = false, updatable = false)
+	private Localidade localidade;
+	
 	@OneToMany
 	private Set<Logradouro> logradouro = new HashSet<Logradouro>();
 

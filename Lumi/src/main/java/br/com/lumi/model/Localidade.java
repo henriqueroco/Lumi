@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 
 import java.io.Serializable;
 
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -56,9 +57,13 @@ public class Localidade implements Serializable {
 	@Column(name = ATRIBUTO_PAIS, nullable = false)
 	private EPais pais;
 
-	@OneToMany
-	private Set<Bairro> bairros = new HashSet<Bairro>();
+//	@OneToMany
+//	private Set<Bairro> bairros = new HashSet<Bairro>();
 
+	@OneToMany
+	@JoinColumn(name = Bairro.ATRIBUTO_ID_LOCALIDADE)
+	private Set<Bairro> bairros = new HashSet<Bairro>();
+	
 	public Long getId() {
 		return this.id;
 	}
