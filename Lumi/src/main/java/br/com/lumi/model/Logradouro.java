@@ -27,11 +27,11 @@ public class Logradouro implements Serializable
 {
 
    static final String TABELA = "logradouro";
-   private static final String ATRIBUTO_NUMERO = "numero";
    private static final String ATRIBUTO_ID = "id";
    private static final String VERSAO = "version";
    private static final String ATRIBUTO_DESCRICAO_LOGRADOURO = "descricao_logradouro";
    private static final String ATRIBUTO_CEP = "cep";
+   private static final String ATRIBUTO_NUMERO = "numero";
 
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)

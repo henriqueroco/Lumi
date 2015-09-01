@@ -1,23 +1,23 @@
 package br.com.lumi.model;
 
-import javax.persistence.Entity;
-
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Table;
-import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Version;
-
-import java.lang.Override;
 
 @Entity
 @Table(name = Procedimento.TABELA)
 public class Procedimento implements Serializable {
 
-	private static final long serialVersionUID = 6444340500873055082L;
+	private static final long serialVersionUID = 1L;
 
 	static final String TABELA = "procedimento";
 	private static final String ATRIBUTO_ID = "id";
@@ -34,6 +34,9 @@ public class Procedimento implements Serializable {
 
 	@Column(name = ATRIBUTO_DESCRICAO, nullable = false)
 	private String descricao;
+
+	@ManyToMany
+	private Set<Produto> produtos = new HashSet<Produto>();
 
 	public Long getId() {
 		return this.id;
@@ -90,5 +93,13 @@ public class Procedimento implements Serializable {
 		if (descricao != null && !descricao.trim().isEmpty())
 			result += "descricao: " + descricao;
 		return result;
+	}
+
+	public Set<Produto> getProdutos() {
+		return this.produtos;
+	}
+
+	public void setProdutos(final Set<Produto> produtos) {
+		this.produtos = produtos;
 	}
 }

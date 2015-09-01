@@ -1,230 +1,233 @@
 package br.com.lumi.model;
 
 import javax.persistence.Entity;
+
 import java.io.Serializable;
+
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
+
 import java.lang.Override;
+
 import br.lumi.server.enuns.ETipoEmbalagem;
+
 import javax.persistence.Enumerated;
+
 import java.math.BigDecimal;
+
 import br.lumi.server.enuns.EUnidadeMedida;
 import br.lumi.server.enuns.EFormaUtilizacao;
 import br.lumi.server.enuns.ESituacao;
+import br.com.lumi.model.ProdutoProcedimento;
+import java.util.Set;
+import java.util.HashSet;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "produto")
-public class Produto implements Serializable
-{
+public class Produto implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = "id", updatable = false, nullable = false)
-   private Long id;
-   @Version
-   @Column(name = "version")
-   private int version;
+	private static final long serialVersionUID = 1L;
 
-   @Column(length = 80, name = "descricao", nullable = false)
-   private String descricao;
+	private static final String ATRIBUTO_ID = "id";
+	private static final String VERSAO = "version";
+	private static final String ATRIBUTO_DESCRICAO = "descricao";
+	private static final String ATRIBUTO_DESCRICAO_MARCA = "descricao_marca";
+	private static final String ATRIBUTO_TIPO_EMBALAGEM = "tipo_embalagem";
+	private static final String ATRIBUTO_QUANTIDADE_EMBALAGEM = "quantidade_embalagem";
+	private static final String ATRIBUTO_UNIDADE_MEDIDA_EMBALAGEM = "unidade_medida_embalagem";
+	private static final String ATRIBUTO_FORMA_UTILIZACAO = "forma_utilizacao";
+	private static final String ATRIBUTO_UNIDADE_MEDIDA_UTILIZACAO = "unidade_medida_utilizacao";
+	private static final String ATRIBUTO_PONTOS = "pontos";
+	private static final String ATRIBUTO_SITUACAO = "situacao";
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = VERSAO)
+	private int version;
 
-   @Column(name = "descricao_marca", nullable = false)
-   private String descricaoMarca;
+	@Column(length = 80, name = ATRIBUTO_DESCRICAO, nullable = false)
+	private String descricao;
 
-   @Column
-   private String tipo;
+	@Column(name = ATRIBUTO_DESCRICAO_MARCA, nullable = false)
+	private String descricaoMarca;
 
-   @Enumerated
-   @Column(name = "tipo_embalagem", nullable = false)
-   private ETipoEmbalagem tipoEmbalagem;
+	@Enumerated
+	@Column(name = ATRIBUTO_TIPO_EMBALAGEM, nullable = false)
+	private ETipoEmbalagem tipoEmbalagem;
 
-   @Column(name = "quantidade_embalagem", nullable = false)
-   private BigDecimal quantidadeEmbalagem;
+	@Column(name = ATRIBUTO_QUANTIDADE_EMBALAGEM, nullable = false)
+	private BigDecimal quantidadeEmbalagem;
 
-   @Enumerated
-   @Column(name = "unidade_medida_embalagem", nullable = false)
-   private EUnidadeMedida unidadeMedidaEmbalagem;
+	@Enumerated
+	@Column(name = ATRIBUTO_UNIDADE_MEDIDA_EMBALAGEM, nullable = false)
+	private EUnidadeMedida unidadeMedidaEmbalagem;
 
-   @Enumerated
-   @Column(name = "forma_utilizacao", nullable = false)
-   private EFormaUtilizacao formaUtilizacao;
+	@Enumerated
+	@Column(name = ATRIBUTO_FORMA_UTILIZACAO, nullable = false)
+	private EFormaUtilizacao formaUtilizacao;
 
-   @Enumerated
-   @Column(name = "unidade_medida_utilizacao", nullable = false)
-   private EUnidadeMedida unidadeMedidaUtilizacao;
+	@Enumerated
+	@Column(name = ATRIBUTO_UNIDADE_MEDIDA_UTILIZACAO, nullable = false)
+	private EUnidadeMedida unidadeMedidaUtilizacao;
 
-   @Column(name = "pontos", nullable = false)
-   private BigDecimal pontos;
+	@Column(name = ATRIBUTO_PONTOS, nullable = false)
+	private BigDecimal pontos;
 
-   @Enumerated
-   @Column(name = "situacao", nullable = false)
-   private ESituacao situacao;
+	@Enumerated
+	@Column(name = ATRIBUTO_SITUACAO, nullable = false)
+	private ESituacao situacao;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	// @OneToMany
+	// private Set<ProdutoProcedimento> produtoProcedimento = new
+	// HashSet<ProdutoProcedimento>();
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	public Long getId() {
+		return this.id;
+	}
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	public int getVersion() {
+		return this.version;
+	}
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (!(obj instanceof Produto))
-      {
-         return false;
-      }
-      Produto other = (Produto) obj;
-      if (id != null)
-      {
-         if (!id.equals(other.id))
-         {
-            return false;
-         }
-      }
-      return true;
-   }
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((id == null) ? 0 : id.hashCode());
-      return result;
-   }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Produto)) {
+			return false;
+		}
+		Produto other = (Produto) obj;
+		if (id != null) {
+			if (!id.equals(other.id)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-   public String getDescricao()
-   {
-      return descricao;
-   }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-   public void setDescricao(String descricao)
-   {
-      this.descricao = descricao;
-   }
+	public String getDescricao() {
+		return descricao;
+	}
 
-   public String getDescricaoMarca()
-   {
-      return descricaoMarca;
-   }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-   public void setDescricaoMarca(String descricaoMarca)
-   {
-      this.descricaoMarca = descricaoMarca;
-   }
+	public String getDescricaoMarca() {
+		return descricaoMarca;
+	}
 
-   public String getTipo()
-   {
-      return tipo;
-   }
+	public void setDescricaoMarca(String descricaoMarca) {
+		this.descricaoMarca = descricaoMarca;
+	}
 
-   public void setTipo(String tipo)
-   {
-      this.tipo = tipo;
-   }
+	public String getTipo() {
+		return tipo;
+	}
 
-   public ETipoEmbalagem getTipoEmbalagem()
-   {
-      return tipoEmbalagem;
-   }
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
-   public void setTipoEmbalagem(ETipoEmbalagem tipoEmbalagem)
-   {
-      this.tipoEmbalagem = tipoEmbalagem;
-   }
+	public ETipoEmbalagem getTipoEmbalagem() {
+		return tipoEmbalagem;
+	}
 
-   public BigDecimal getQuantidadeEmbalagem()
-   {
-      return quantidadeEmbalagem;
-   }
+	public void setTipoEmbalagem(ETipoEmbalagem tipoEmbalagem) {
+		this.tipoEmbalagem = tipoEmbalagem;
+	}
 
-   public void setQuantidadeEmbalagem(BigDecimal quantidadeEmbalagem)
-   {
-      this.quantidadeEmbalagem = quantidadeEmbalagem;
-   }
+	public BigDecimal getQuantidadeEmbalagem() {
+		return quantidadeEmbalagem;
+	}
 
-   public EUnidadeMedida getUnidadeMedidaEmbalagem()
-   {
-      return unidadeMedidaEmbalagem;
-   }
+	public void setQuantidadeEmbalagem(BigDecimal quantidadeEmbalagem) {
+		this.quantidadeEmbalagem = quantidadeEmbalagem;
+	}
 
-   public void setUnidadeMedidaEmbalagem(EUnidadeMedida unidadeMedidaEmbalagem)
-   {
-      this.unidadeMedidaEmbalagem = unidadeMedidaEmbalagem;
-   }
+	public EUnidadeMedida getUnidadeMedidaEmbalagem() {
+		return unidadeMedidaEmbalagem;
+	}
 
-   public EFormaUtilizacao getFormaUtilizacao()
-   {
-      return formaUtilizacao;
-   }
+	public void setUnidadeMedidaEmbalagem(EUnidadeMedida unidadeMedidaEmbalagem) {
+		this.unidadeMedidaEmbalagem = unidadeMedidaEmbalagem;
+	}
 
-   public void setFormaUtilizacao(EFormaUtilizacao formaUtilizacao)
-   {
-      this.formaUtilizacao = formaUtilizacao;
-   }
+	public EFormaUtilizacao getFormaUtilizacao() {
+		return formaUtilizacao;
+	}
 
-   public EUnidadeMedida getUnidadeMedidaUtilizacao()
-   {
-      return unidadeMedidaUtilizacao;
-   }
+	public void setFormaUtilizacao(EFormaUtilizacao formaUtilizacao) {
+		this.formaUtilizacao = formaUtilizacao;
+	}
 
-   public void setUnidadeMedidaUtilizacao(EUnidadeMedida unidadeMedidaUtilizacao)
-   {
-      this.unidadeMedidaUtilizacao = unidadeMedidaUtilizacao;
-   }
+	public EUnidadeMedida getUnidadeMedidaUtilizacao() {
+		return unidadeMedidaUtilizacao;
+	}
 
-   public BigDecimal getPontos()
-   {
-      return pontos;
-   }
+	public void setUnidadeMedidaUtilizacao(
+			EUnidadeMedida unidadeMedidaUtilizacao) {
+		this.unidadeMedidaUtilizacao = unidadeMedidaUtilizacao;
+	}
 
-   public void setPontos(BigDecimal pontos)
-   {
-      this.pontos = pontos;
-   }
+	public BigDecimal getPontos() {
+		return pontos;
+	}
 
-   public ESituacao getSituacao()
-   {
-      return situacao;
-   }
+	public void setPontos(BigDecimal pontos) {
+		this.pontos = pontos;
+	}
 
-   public void setSituacao(ESituacao situacao)
-   {
-      this.situacao = situacao;
-   }
+	public ESituacao getSituacao() {
+		return situacao;
+	}
 
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (descricao != null && !descricao.trim().isEmpty())
-         result += "descricao: " + descricao;
-      if (descricaoMarca != null && !descricaoMarca.trim().isEmpty())
-         result += ", descricaoMarca: " + descricaoMarca;
-      if (tipo != null && !tipo.trim().isEmpty())
-         result += ", tipo: " + tipo;
-      return result;
-   }
+	public void setSituacao(ESituacao situacao) {
+		this.situacao = situacao;
+	}
+
+	@Override
+	public String toString() {
+		String result = getClass().getSimpleName() + " ";
+		if (descricao != null && !descricao.trim().isEmpty())
+			result += "descricao: " + descricao;
+		if (descricaoMarca != null && !descricaoMarca.trim().isEmpty())
+			result += ", descricaoMarca: " + descricaoMarca;
+		if (tipo != null && !tipo.trim().isEmpty())
+			result += ", tipo: " + tipo;
+		return result;
+	}
+
+	public Set<ProdutoProcedimento> getProdutoProcedimento() {
+		return this.produtoProcedimento;
+	}
+
+	public void setProdutoProcedimento(
+			final Set<ProdutoProcedimento> produtoProcedimento) {
+		this.produtoProcedimento = produtoProcedimento;
+	}
 }

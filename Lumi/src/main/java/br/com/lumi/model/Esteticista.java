@@ -28,8 +28,8 @@ public class Esteticista implements Serializable {
 	private static final String ATRIBUTO_ID = "id";
 	private static final String VERSAO = "version";
 	private static final String ATRIBUTO_NOME = "nome";
-	private static final String ATRIBUTO_TELEFONE = "telefone";
-	private static final String ATRIBUTO_TIPO = "tipo";
+	private static final String ATRIBUTO_TELEFONE = "numero_telefone";
+	private static final String ATRIBUTO_TIPO = "tipo_usuario";
 	private static final String ATRIBUTO_SENHA = "senha";
 	private static final String ATRIBUTO_SITUACAO = "situacao";
 

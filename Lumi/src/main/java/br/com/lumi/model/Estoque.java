@@ -1,85 +1,100 @@
 package br.com.lumi.model;
 
 import javax.persistence.Entity;
+
 import java.io.Serializable;
+
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
+
 import java.lang.Override;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import br.com.lumi.model.Produto;
 
 @Entity
 @Table(name = "estoque")
-public class Estoque implements Serializable
-{
+public class Estoque implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = "id", updatable = false, nullable = false)
-   private Long id;
-   @Version
-   @Column(name = "version")
-   private int version;
+	private static final long serialVersionUID = 1L;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	private static final String ATRIBUTO_ID_PRODUTO = "id_produto";
+	private static final String VERSAO = "version";
+	private static final String ATRIBUTO_QUANTIDADE = "quantidade";
+	private static final String ATRIBUTO_DATA_ALTERACAO = "data_alteracao";
+	private static final String ATRIBUTO_ID_MOVIMENTO = "id_movimento";
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = ATRIBUTO_ID_PRODUTO, nullable = false)
+	private Produto produto;
+	@Version
+	@Column(name = VERSAO)
+	private int version;
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	@Column(name = ATRIBUTO_QUANTIDADE, nullable = false)
+	private BigDecimal quantidade;
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	@Column(name = ATRIBUTO_DATA_ALTERACAO, nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date dataAlteracao;
 
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (id != null)
-         result += "id: " + id;
-      return result;
-   }
+	@Column(name = ATRIBUTO_ID_MOVIMENTO)
+	private Long movimentoEstoque;
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (!(obj instanceof Estoque))
-      {
-         return false;
-      }
-      Estoque other = (Estoque) obj;
-      if (id != null)
-      {
-         if (!id.equals(other.id))
-         {
-            return false;
-         }
-      }
-      return true;
-   }
+	public int getVersion() {
+		return this.version;
+	}
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((id == null) ? 0 : id.hashCode());
-      return result;
-   }
+	public void setVersion(final int version) {
+		this.version = version;
+	}
+
+	public BigDecimal getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(BigDecimal quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public Date getDataAlteracao() {
+		return dataAlteracao;
+	}
+
+	public void setDataAlteracao(Date dataAlteracao) {
+		this.dataAlteracao = dataAlteracao;
+	}
+
+	public Long getMovimentoEstoque() {
+		return movimentoEstoque;
+	}
+
+	public void setMovimentoEstoque(Long movimentoEstoque) {
+		this.movimentoEstoque = movimentoEstoque;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	@Override
+	public String toString() {
+		String result = getClass().getSimpleName() + " ";
+		if (movimentoEstoque != null)
+			result += "movimentoEstoque: " + movimentoEstoque;
+		return result;
+	}
 }
