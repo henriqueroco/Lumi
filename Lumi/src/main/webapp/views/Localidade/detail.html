@@ -1,0 +1,56 @@
+<header ng-switch on="$location.path().indexOf('/Localidades/new') > -1">
+    <h3 ng-switch-when="true">Create a new Localidade</h3>
+    <h3 ng-switch-when="false">View or edit Localidade</h3>
+</header>
+<form id="LocalidadeForm" name="LocalidadeForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': LocalidadeForm.descricaoCidade.$invalid}">
+        <label for="descricaoCidade" class="col-sm-2 control-label">Descricao Cidade</label>
+        <div id="descricaoCidadeControls" class="col-sm-10">
+            <input id="descricaoCidade" name="descricaoCidade" type="text" required class="form-control" ng-model="localidade.descricaoCidade" placeholder="Enter the Localidade Descricao Cidade"></input>
+            <span class="help-block error" ng-show="LocalidadeForm.descricaoCidade.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': LocalidadeForm.uf.$invalid}">
+        <label for="uf" class="col-sm-2 control-label">Uf</label>
+        <div id="ufControls" class="col-sm-10">
+        <select id="uf" name="uf" class="form-control" ng-model="localidade.uf" ng-options="u for u in ufList" required >
+            <option value="">Choose a Uf</option>
+        </select>
+        <span class="help-block error" ng-show="LocalidadeForm.uf.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': LocalidadeForm.pais.$invalid}">
+        <label for="pais" class="col-sm-2 control-label">Pais</label>
+        <div id="paisControls" class="col-sm-10">
+        <select id="pais" name="pais" class="form-control" ng-model="localidade.pais" ng-options="p for p in paisList" required >
+            <option value="">Choose a Pais</option>
+        </select>
+        <span class="help-block error" ng-show="LocalidadeForm.pais.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': LocalidadeForm.bairros.$invalid}">
+        <label for="bairros" class="col-sm-2 control-label">Bairros</label>
+        <div id="bairrosControls" class="col-sm-10">
+            <select id="bairros" name="bairros" multiple class="form-control" ng-model="bairrosSelection" ng-options="b.text for b in bairrosSelectionList">
+                <option value="">Choose a Bairros</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveLocalidade" name="saveLocalidade" class="btn btn-primary" ng-disabled="isClean() || LocalidadeForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteLocalidade" name="deleteLocalidade" class="btn btn-danger" ng-show="localidade.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

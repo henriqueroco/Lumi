@@ -20,9 +20,11 @@ import br.com.lumi.model.Cliente;
 import java.util.Set;
 import java.util.HashSet;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = Logradouro.TABELA)
+@XmlRootElement
 public class Logradouro implements Serializable
 {
 

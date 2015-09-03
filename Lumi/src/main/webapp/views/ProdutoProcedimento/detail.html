@@ -1,0 +1,45 @@
+<header ng-switch on="$location.path().indexOf('/ProdutoProcedimentos/new') > -1">
+    <h3 ng-switch-when="true">Create a new ProdutoProcedimento</h3>
+    <h3 ng-switch-when="false">View or edit ProdutoProcedimento</h3>
+</header>
+<form id="ProdutoProcedimentoForm" name="ProdutoProcedimentoForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': ProdutoProcedimentoForm.quantidade.$invalid}">
+        <label for="quantidade" class="col-sm-2 control-label">Quantidade</label>
+        <div id="quantidadeControls" class="col-sm-10">
+            <input id="quantidade" name="quantidade" type="text" required class="form-control" ng-model="produtoProcedimento.quantidade" placeholder="Enter the ProdutoProcedimento Quantidade"></input>
+            <span class="help-block error" ng-show="ProdutoProcedimentoForm.quantidade.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ProdutoProcedimentoForm.produto.$invalid}">
+        <label for="produto" class="col-sm-2 control-label">Produto</label>
+        <div id="produtoControls" class="col-sm-10">
+        <select id="produto" name="produto" class="form-control" ng-model="produtoSelection" ng-options="p.text for p in produtoSelectionList"  >
+            <option value="">Choose a Produto</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ProdutoProcedimentoForm.procedimento.$invalid}">
+        <label for="procedimento" class="col-sm-2 control-label">Procedimento</label>
+        <div id="procedimentoControls" class="col-sm-10">
+        <select id="procedimento" name="procedimento" class="form-control" ng-model="procedimentoSelection" ng-options="p.text for p in procedimentoSelectionList"  >
+            <option value="">Choose a Procedimento</option>
+        </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveProdutoProcedimento" name="saveProdutoProcedimento" class="btn btn-primary" ng-disabled="isClean() || ProdutoProcedimentoForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteProdutoProcedimento" name="deleteProdutoProcedimento" class="btn btn-danger" ng-show="produtoProcedimento.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
