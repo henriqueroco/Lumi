@@ -37,8 +37,10 @@
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Bairros')}" href="#/Bairros" data-toggle="offcanvas">Bairros</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Clientes')}" href="#/Clientes" data-toggle="offcanvas">Clientes</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Esteticista')}" href="#/Esteticista" data-toggle="offcanvas">Esteticista</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Estoques')}" href="#/Estoques" data-toggle="offcanvas">Estoques</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Localidades')}" href="#/Localidades" data-toggle="offcanvas">Localidades</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Logradouros')}" href="#/Logradouros" data-toggle="offcanvas">Logradouros</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('MovimentoEstoques')}" href="#/MovimentoEstoques" data-toggle="offcanvas">MovimentoEstoques</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Procedimentos')}" href="#/Procedimentos" data-toggle="offcanvas">Procedimentos</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Produtos')}" href="#/Produtos" data-toggle="offcanvas">Produtos</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('ProdutoProcedimentos')}" href="#/ProdutoProcedimentos" data-toggle="offcanvas">ProdutoProcedimentos</a>
@@ -87,6 +89,10 @@
     <script src="scripts/controllers/newEsteticistaController.js"></script>
     <script src="scripts/controllers/searchEsteticistaController.js"></script>
     <script src="scripts/controllers/editEsteticistaController.js"></script>
+    <script src="scripts/services/EstoqueFactory.js"></script>
+    <script src="scripts/controllers/newEstoqueController.js"></script>
+    <script src="scripts/controllers/searchEstoqueController.js"></script>
+    <script src="scripts/controllers/editEstoqueController.js"></script>
     <script src="scripts/services/LocalidadeFactory.js"></script>
     <script src="scripts/controllers/newLocalidadeController.js"></script>
     <script src="scripts/controllers/searchLocalidadeController.js"></script>
@@ -95,6 +101,10 @@
     <script src="scripts/controllers/newLogradouroController.js"></script>
     <script src="scripts/controllers/searchLogradouroController.js"></script>
     <script src="scripts/controllers/editLogradouroController.js"></script>
+    <script src="scripts/services/MovimentoEstoqueFactory.js"></script>
+    <script src="scripts/controllers/newMovimentoEstoqueController.js"></script>
+    <script src="scripts/controllers/searchMovimentoEstoqueController.js"></script>
+    <script src="scripts/controllers/editMovimentoEstoqueController.js"></script>
     <script src="scripts/services/ProcedimentoFactory.js"></script>
     <script src="scripts/controllers/newProcedimentoController.js"></script>
     <script src="scripts/controllers/searchProcedimentoController.js"></script>

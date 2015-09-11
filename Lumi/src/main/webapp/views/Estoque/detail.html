@@ -1,0 +1,44 @@
+<header ng-switch on="$location.path().indexOf('/Estoques/new') > -1">
+    <h3 ng-switch-when="true">Create a new Estoque</h3>
+    <h3 ng-switch-when="false">View or edit Estoque</h3>
+</header>
+<form id="EstoqueForm" name="EstoqueForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+    <div class="form-group" ng-class="{'has-error': EstoqueForm.quantidade.$invalid}">
+        <label for="quantidade" class="col-sm-2 control-label">Quantidade</label>
+        <div id="quantidadeControls" class="col-sm-10">
+            <input id="quantidade" name="quantidade" type="text" required class="form-control" ng-model="estoque.quantidade" placeholder="Enter the Estoque Quantidade"></input>
+            <span class="help-block error" ng-show="EstoqueForm.quantidade.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EstoqueForm.dataAlteracao.$invalid}">
+        <label for="dataAlteracao" class="col-sm-2 control-label">Data Alteracao</label>
+        <div id="dataAlteracaoControls" class="col-sm-10">
+            <date id="dataAlteracao" name="dataAlteracao" required ng-model="estoque.dataAlteracao" placeholder="Enter the Estoque Data Alteracao"></date>
+            <span class="help-block error" ng-show="EstoqueForm.dataAlteracao.$error.required">required</span> 
+            <span class="help-block error" ng-show="EstoqueForm.dataAlteracao.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EstoqueForm.movimentoEstoque.$invalid}">
+        <label for="movimentoEstoque" class="col-sm-2 control-label">Movimento Estoque</label>
+        <div id="movimentoEstoqueControls" class="col-sm-10">
+            <input id="movimentoEstoque" name="movimentoEstoque" type="number" class="form-control" ng-model="estoque.movimentoEstoque" placeholder="Enter the Estoque Movimento Estoque"></input>
+            <span class="help-block error" ng-show="EstoqueForm.movimentoEstoque.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveEstoque" name="saveEstoque" class="btn btn-primary" ng-disabled="isClean() || EstoqueForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteEstoque" name="deleteEstoque" class="btn btn-danger" ng-show="estoque.produto" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "movimento_estoque")
+@XmlRootElement
 public class MovimentoEstoque implements Serializable
 {
 

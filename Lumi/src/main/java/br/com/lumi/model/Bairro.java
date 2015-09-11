@@ -46,12 +46,12 @@ public class Bairro implements Serializable
    @Column(name = ATRIBUTO_DESCRICAO_BAIRRO, nullable = false)
    private String descricaoBairro;
 
-   //	@ManyToOne
-   //	private Localidade localidade;
+   	@ManyToOne
+   	private Localidade localidade;
 
-   @ManyToOne(fetch = FetchType.LAZY)
-   @JoinColumn(name = ATRIBUTO_ID_LOCALIDADE, insertable = false, updatable = false)
-   private Localidade localidade;
+//   @ManyToOne(fetch = FetchType.EAGER)
+//   @JoinColumn(name = ATRIBUTO_ID_LOCALIDADE, insertable = false, updatable = false)
+//   private Localidade localidade;
 
    @OneToMany
    private Set<Logradouro> logradouro = new HashSet<Logradouro>();

@@ -1,0 +1,19 @@
+<header ng-switch on="$location.path().indexOf('/MovimentoEstoques/new') > -1">
+    <h3 ng-switch-when="true">Create a new MovimentoEstoque</h3>
+    <h3 ng-switch-when="false">View or edit MovimentoEstoque</h3>
+</header>
+<form id="MovimentoEstoqueForm" name="MovimentoEstoqueForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveMovimentoEstoque" name="saveMovimentoEstoque" class="btn btn-primary" ng-disabled="isClean() || MovimentoEstoqueForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteMovimentoEstoque" name="deleteMovimentoEstoque" class="btn btn-danger" ng-show="movimentoEstoque.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
