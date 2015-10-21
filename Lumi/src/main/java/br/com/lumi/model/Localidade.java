@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 
 import java.io.Serializable;
 
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -19,53 +18,37 @@ import br.lumi.server.enuns.EUf;
 import javax.persistence.Enumerated;
 
 import br.lumi.server.enuns.EPais;
-import br.com.lumi.model.Bairro;
-
-import java.util.Set;
-import java.util.HashSet;
-
-import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = Localidade.TABELA)
-@XmlRootElement
 public class Localidade implements Serializable
 {
 
-   private static final long serialVersionUID = -8283116906037311354L;
-
    static final String TABELA = "localidade";
    private static final String ATRIBUTO_ID = "id";
-   private static final String VERSAO = "version";
+   private static final String ATRIBUTO_VERSION = "version";
    private static final String ATRIBUTO_DESCRICAO_CIDADE = "descricao_cidade";
-   private static final String ATRIBUTO_UF = "unidade_federativa";
-   private static final String ATRIBUTO_PAIS = "pais";
+   private static final String ATRIBUTO_UNIDADE_FEDERATIVA = "unidade_federativa";
+   private static final String ATIBUTO_PAIS = "pais";
+
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
    private Long id;
    @Version
-   @Column(name = VERSAO)
+   @Column(name = ATRIBUTO_VERSION)
    private int version;
 
-   @Column(name = ATRIBUTO_DESCRICAO_CIDADE, nullable = false)
-   private String descricaoCidade;
+   @Column(length = 100, name = ATRIBUTO_DESCRICAO_CIDADE, nullable = false)
+   private String nomeCidade;
 
    @Enumerated
-   @Column(name = ATRIBUTO_UF, nullable = false)
+   @Column(name = ATRIBUTO_UNIDADE_FEDERATIVA, nullable = false, length = 2)
    private EUf uf;
 
    @Enumerated
-   @Column(name = ATRIBUTO_PAIS, nullable = false)
+   @Column(name = ATIBUTO_PAIS, nullable = false, length = 2)
    private EPais pais;
-
-   	@OneToMany
-   	private Set<Bairro> bairros = new HashSet<Bairro>();
-
-//   @OneToMany
-//   @JoinColumn(name = Bairro.ATRIBUTO_ID_LOCALIDADE)
-//   private Set<Bairro> bairros = new HashSet<Bairro>();
 
    public Long getId()
    {
@@ -118,14 +101,14 @@ public class Localidade implements Serializable
       return result;
    }
 
-   public String getDescricaoCidade()
+   public String getNomeCidade()
    {
-      return descricaoCidade;
+      return nomeCidade;
    }
 
-   public void setDescricaoCidade(String descricaoCidade)
+   public void setNomeCidade(String nomeCidade)
    {
-      this.descricaoCidade = descricaoCidade;
+      this.nomeCidade = nomeCidade;
    }
 
    public EUf getUf()
@@ -152,18 +135,8 @@ public class Localidade implements Serializable
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";
-      if (descricaoCidade != null && !descricaoCidade.trim().isEmpty())
-         result += "descricaoCidade: " + descricaoCidade;
+      if (nomeCidade != null && !nomeCidade.trim().isEmpty())
+         result += "nomeCidade: " + nomeCidade;
       return result;
-   }
-
-   public Set<Bairro> getBairros()
-   {
-      return this.bairros;
-   }
-
-   public void setBairros(final Set<Bairro> bairros)
-   {
-      this.bairros = bairros;
    }
 }

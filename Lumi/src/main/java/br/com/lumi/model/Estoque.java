@@ -19,11 +19,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.lumi.model.Produto;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "estoque")
-@XmlRootElement
 public class Estoque implements Serializable
 {
 

@@ -22,22 +22,15 @@ import java.math.BigDecimal;
 import br.lumi.server.enuns.EUnidadeMedida;
 import br.lumi.server.enuns.EFormaUtilizacao;
 import br.lumi.server.enuns.ESituacao;
-import br.com.lumi.model.ProdutoProcedimento;
-import java.util.Set;
-import java.util.HashSet;
-import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name = "produto")
-@XmlRootElement
+@Table(name = Produto.TABELA)
 public class Produto implements Serializable
 {
 
-   private static final long serialVersionUID = 1L;
-
+   static final String TABELA = "produto";
    private static final String ATRIBUTO_ID = "id";
-   private static final String VERSAO = "version";
+   private static final String ATRIBUTO_VERSION = "version";
    private static final String ATRIBUTO_DESCRICAO = "descricao";
    private static final String ATRIBUTO_DESCRICAO_MARCA = "descricao_marca";
    private static final String ATRIBUTO_TIPO_EMBALAGEM = "tipo_embalagem";
@@ -47,22 +40,23 @@ public class Produto implements Serializable
    private static final String ATRIBUTO_UNIDADE_MEDIDA_UTILIZACAO = "unidade_medida_utilizacao";
    private static final String ATRIBUTO_PONTOS = "pontos";
    private static final String ATRIBUTO_SITUACAO = "situacao";
+
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
    private Long id;
    @Version
-   @Column(name = VERSAO)
+   @Column(name = ATRIBUTO_VERSION)
    private int version;
 
-   @Column(length = 80, name = ATRIBUTO_DESCRICAO, nullable = false)
+   @Column(length = 50, name = ATRIBUTO_DESCRICAO, nullable = false)
    private String descricao;
 
-   @Column(name = ATRIBUTO_DESCRICAO_MARCA, nullable = false)
+   @Column(length = 50, name = ATRIBUTO_DESCRICAO_MARCA, nullable = false)
    private String descricaoMarca;
 
    @Enumerated
-   @Column(name = ATRIBUTO_TIPO_EMBALAGEM, nullable = false)
+   @Column(name = ATRIBUTO_TIPO_EMBALAGEM, nullable = false, length = 2)
    private ETipoEmbalagem tipoEmbalagem;
 
    @Column(name = ATRIBUTO_QUANTIDADE_EMBALAGEM, nullable = false)
@@ -77,7 +71,7 @@ public class Produto implements Serializable
    private EFormaUtilizacao formaUtilizacao;
 
    @Enumerated
-   @Column(name = ATRIBUTO_UNIDADE_MEDIDA_UTILIZACAO, nullable = false)
+   @Column(name = ATRIBUTO_UNIDADE_MEDIDA_UTILIZACAO)
    private EUnidadeMedida unidadeMedidaUtilizacao;
 
    @Column(name = ATRIBUTO_PONTOS, nullable = false)
@@ -86,10 +80,6 @@ public class Produto implements Serializable
    @Enumerated
    @Column(name = ATRIBUTO_SITUACAO, nullable = false)
    private ESituacao situacao;
-
-   // @OneToMany
-   // private Set<ProdutoProcedimento> produtoProcedimento = new
-   // HashSet<ProdutoProcedimento>();
 
    public Long getId()
    {
@@ -161,16 +151,6 @@ public class Produto implements Serializable
    {
       this.descricaoMarca = descricaoMarca;
    }
-
-//   public String getTipo()
-//   {
-//      return tipo;
-//   }
-//
-//   public void setTipo(String tipo)
-//   {
-//      this.tipo = tipo;
-//   }
 
    public ETipoEmbalagem getTipoEmbalagem()
    {
@@ -251,19 +231,6 @@ public class Produto implements Serializable
          result += "descricao: " + descricao;
       if (descricaoMarca != null && !descricaoMarca.trim().isEmpty())
          result += ", descricaoMarca: " + descricaoMarca;
-//      if (tipo != null && !tipo.trim().isEmpty())
-//         result += ", tipo: " + tipo;
       return result;
    }
-
-//   public Set<ProdutoProcedimento> getProdutoProcedimento()
-//   {
-//      return this.produtoProcedimento;
-//   }
-//
-//   public void setProdutoProcedimento(
-//         final Set<ProdutoProcedimento> produtoProcedimento)
-//   {
-//      this.produtoProcedimento = produtoProcedimento;
-//   }
 }

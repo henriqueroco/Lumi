@@ -13,51 +13,33 @@ import javax.persistence.Version;
 
 import java.lang.Override;
 
-import br.com.lumi.model.Bairro;
-
-import javax.persistence.ManyToOne;
-import br.com.lumi.model.Cliente;
-import java.util.Set;
-import java.util.HashSet;
-import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlRootElement;
-
 @Entity
 @Table(name = Logradouro.TABELA)
-@XmlRootElement
 public class Logradouro implements Serializable
 {
 
    static final String TABELA = "logradouro";
    private static final String ATRIBUTO_ID = "id";
-   private static final String VERSAO = "version";
+   private static final String ATIBUTO_VERSION = "version";
    private static final String ATRIBUTO_DESCRICAO_LOGRADOURO = "descricao_logradouro";
    private static final String ATRIBUTO_CEP = "cep";
    private static final String ATRIBUTO_NUMERO = "numero";
-
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
    private Long id;
    @Version
-   @Column(name = VERSAO)
+   @Column(name = ATIBUTO_VERSION)
    private int version;
 
-   @Column(length = 50, name = ATRIBUTO_DESCRICAO_LOGRADOURO, nullable = false)
+   @Column(length = 100, name = ATRIBUTO_DESCRICAO_LOGRADOURO, nullable = false)
    private String descricaoLogradouro;
 
-   @Column(name = ATRIBUTO_CEP, nullable = false)
+   @Column(length = 10, name = ATRIBUTO_CEP)
    private String cep;
 
-   @Column(name = ATRIBUTO_NUMERO, nullable = false)
+   @Column(name = ATRIBUTO_NUMERO)
    private Integer numero;
-
-   @ManyToOne
-   // XXX
-   private Bairro bairro;
-
-   @OneToMany
-   private Set<Cliente> cliente = new HashSet<Cliente>();
 
    public Long getId()
    {
@@ -130,16 +112,6 @@ public class Logradouro implements Serializable
       this.cep = cep;
    }
 
-   public Bairro getBairro()
-   {
-      return this.bairro;
-   }
-
-   public void setBairro(final Bairro bairro)
-   {
-      this.bairro = bairro;
-   }
-
    public Integer getNumero()
    {
       return numero;
@@ -162,15 +134,5 @@ public class Logradouro implements Serializable
       if (numero != null)
          result += ", numero: " + numero;
       return result;
-   }
-
-   public Set<Cliente> getCliente()
-   {
-      return this.cliente;
-   }
-
-   public void setCliente(final Set<Cliente> cliente)
-   {
-      this.cliente = cliente;
    }
 }

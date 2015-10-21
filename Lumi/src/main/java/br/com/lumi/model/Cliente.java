@@ -83,7 +83,6 @@ public class Cliente implements Serializable
    private ESituacao situacao;
 
    @ManyToOne
-   // XXX
    private Logradouro logradouro;
 
    public Long getId()
