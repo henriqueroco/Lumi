@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{logradouroBean.id}'/>
+		<f:event type="preRenderView" listener='#{logradouroBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Logradouro"/>
+
+	<ui:define name="header">
+		Logradouro
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Logradouro
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="logradouroBeanLogradouroDescricaoLogradouro" value="Descricao Logradouro:"/>
+			<h:outputText id="logradouroBeanLogradouroDescricaoLogradouro" value="#{logradouroBean.logradouro.descricaoLogradouro}"/>
+			<h:outputText/>
+			<h:outputLabel for="logradouroBeanLogradouroCep" value="Cep:"/>
+			<h:outputText id="logradouroBeanLogradouroCep" value="#{logradouroBean.logradouro.cep}"/>
+			<h:outputText/>
+			<h:outputLabel for="logradouroBeanLogradouroNumero" value="Numero:"/>
+			<h:outputText id="logradouroBeanLogradouroNumero" value="#{logradouroBean.logradouro.numero}"/>
+			<h:outputText/>
+			<h:outputLabel for="logradouroBeanLogradouroBairro" value="Bairro:"/>
+			<h:link id="logradouroBeanLogradouroBairro" outcome="/bairro/view" rendered="#{!empty logradouroBean.logradouro.bairro}" value="#{logradouroBean.logradouro.bairro}">
+				<f:param name="id" value="#{logradouroBean.logradouro.bairro.id}"/>
+			</h:link>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

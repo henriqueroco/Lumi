@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{logradouroBean.page}'/>
+		<f:event type="preRenderView" listener='#{logradouroBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Logradouro entities"/>
+
+	<ui:define name="header">
+		Logradouro
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Logradouro entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="logradouroBeanExampleDescricaoLogradouro" value="Descricao Logradouro:"/>
+						<h:panelGroup>
+							<h:inputText id="logradouroBeanExampleDescricaoLogradouro" maxLength="100" value="#{logradouroBean.example.descricaoLogradouro}"/>
+							<h:message for="logradouroBeanExampleDescricaoLogradouro" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="logradouroBeanExampleCep" value="Cep:"/>
+						<h:panelGroup>
+							<h:inputText id="logradouroBeanExampleCep" maxLength="10" value="#{logradouroBean.example.cep}"/>
+							<h:message for="logradouroBeanExampleCep" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="logradouroBeanExampleNumero" value="Numero:"/>
+						<h:panelGroup>
+							<h:inputText id="logradouroBeanExampleNumero" value="#{logradouroBean.example.numero}"/>
+							<h:message for="logradouroBeanExampleNumero" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="logradouroBeanExampleBairro" value="Bairro:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{bairroBean.converter}" id="logradouroBeanExampleBairro" value="#{logradouroBean.example.bairro}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{bairroBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="logradouroBeanExampleBairro" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{logradouroBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{logradouroBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="logradouroBeanPageItems" styleClass="data-table" value="#{logradouroBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descricao Logradouro"/>
+					</f:facet>
+					<h:link outcome="/logradouro/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDescricaoLogradouro" value="#{_item.descricaoLogradouro}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{logradouroBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

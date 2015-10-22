@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{movimentoEstoqueBean.page}'/>
+		<f:event type="preRenderView" listener='#{movimentoEstoqueBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Movimento Estoque entities"/>
+
+	<ui:define name="header">
+		Movimento Estoque
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Movimento Estoque entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="movimentoEstoqueBeanExampleTipoMovimento" value="Tipo Movimento:"/>
+						<h:panelGroup>
+							<h:selectOneMenu id="movimentoEstoqueBeanExampleTipoMovimento" value="#{movimentoEstoqueBean.example.tipoMovimento}">
+								<f:selectItem/>
+								<f:selectItem itemValue="ENTRADA"/>
+								<f:selectItem itemValue="SAIDA"/>
+							</h:selectOneMenu>
+							<h:message for="movimentoEstoqueBeanExampleTipoMovimento" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="movimentoEstoqueBeanExampleUnidadeMedidaMovimentacao" value="Unidade Medida Movimentacao:"/>
+						<h:panelGroup>
+							<h:selectOneMenu id="movimentoEstoqueBeanExampleUnidadeMedidaMovimentacao" value="#{movimentoEstoqueBean.example.unidadeMedidaMovimentacao}">
+								<f:selectItem/>
+								<f:selectItem itemValue="UND"/>
+								<f:selectItem itemValue="KG"/>
+								<f:selectItem itemValue="L"/>
+							</h:selectOneMenu>
+							<h:message for="movimentoEstoqueBeanExampleUnidadeMedidaMovimentacao" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{movimentoEstoqueBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{movimentoEstoqueBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="movimentoEstoqueBeanPageItems" styleClass="data-table" value="#{movimentoEstoqueBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Data Movimento"/>
+					</f:facet>
+					<h:link outcome="/movimentoEstoque/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDataMovimento" value="#{_item.dataMovimento}">
+							<f:convertDateTime type="date"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo Movimento"/>
+					</f:facet>
+					<h:link outcome="/movimentoEstoque/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemTipoMovimento" value="#{_item.tipoMovimento}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Quantidade"/>
+					</f:facet>
+					<h:link outcome="/movimentoEstoque/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemQuantidade" value="#{_item.quantidade}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Unidade Medida Movimentacao"/>
+					</f:facet>
+					<h:link outcome="/movimentoEstoque/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemUnidadeMedidaMovimentacao" value="#{_item.unidadeMedidaMovimentacao}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{movimentoEstoqueBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

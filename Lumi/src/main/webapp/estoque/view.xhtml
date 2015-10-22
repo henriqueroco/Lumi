@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{estoqueBean.id}'/>
+		<f:event type="preRenderView" listener='#{estoqueBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Estoque"/>
+
+	<ui:define name="header">
+		Estoque
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Estoque
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="estoqueBeanEstoqueQuantidade" value="Quantidade:"/>
+			<h:outputText id="estoqueBeanEstoqueQuantidade" value="#{estoqueBean.estoque.quantidade}"/>
+			<h:outputText/>
+			<h:outputLabel for="estoqueBeanEstoqueDataAlteracao" value="Data Alteracao:"/>
+			<h:outputText id="estoqueBeanEstoqueDataAlteracao" value="#{estoqueBean.estoque.dataAlteracao}">
+				<f:convertDateTime type="date"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="estoqueBeanEstoqueMovimentoEstoque" value="Movimento Estoque:"/>
+			<h:outputText id="estoqueBeanEstoqueMovimentoEstoque" value="#{estoqueBean.estoque.movimentoEstoque}"/>
+			<h:outputText/>
+			<h:outputLabel for="estoqueBeanEstoqueProduto" value="Produto:"/>
+			<h:panelGrid columnClasses="label,component,required" columns="3" id="estoqueBeanEstoqueProduto" rendered="#{!empty estoqueBean.estoque.produto}">
+				<h:outputLabel for="estoqueBeanEstoqueProdutoDescricao" value="Descricao:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoDescricao" value="#{estoqueBean.estoque.produto.descricao}"/>
+				<h:outputText/>
+				<h:outputLabel for="estoqueBeanEstoqueProdutoDescricaoMarca" value="Descricao Marca:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoDescricaoMarca" value="#{estoqueBean.estoque.produto.descricaoMarca}"/>
+				<h:outputText/>
+				<h:outputLabel for="estoqueBeanEstoqueProdutoTipoEmbalagem" value="Tipo Embalagem:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoTipoEmbalagem" value="#{estoqueBean.estoque.produto.tipoEmbalagem}"/>
+				<h:outputText/>
+				<h:outputLabel for="estoqueBeanEstoqueProdutoQuantidadeEmbalagem" value="Quantidade Embalagem:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoQuantidadeEmbalagem" value="#{estoqueBean.estoque.produto.quantidadeEmbalagem}"/>
+				<h:outputText/>
+				<h:outputLabel for="estoqueBeanEstoqueProdutoUnidadeMedidaEmbalagem" value="Unidade Medida Embalagem:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoUnidadeMedidaEmbalagem" value="#{estoqueBean.estoque.produto.unidadeMedidaEmbalagem}"/>
+				<h:outputText/>
+				<h:outputLabel for="estoqueBeanEstoqueProdutoFormaUtilizacao" value="Forma Utilizacao:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoFormaUtilizacao" value="#{estoqueBean.estoque.produto.formaUtilizacao}"/>
+				<h:outputText/>
+				<h:outputLabel for="estoqueBeanEstoqueProdutoUnidadeMedidaUtilizacao" value="Unidade Medida Utilizacao:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoUnidadeMedidaUtilizacao" value="#{estoqueBean.estoque.produto.unidadeMedidaUtilizacao}"/>
+				<h:outputText/>
+				<h:outputLabel for="estoqueBeanEstoqueProdutoPontos" value="Pontos:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoPontos" value="#{estoqueBean.estoque.produto.pontos}"/>
+				<h:outputText/>
+				<h:outputLabel for="estoqueBeanEstoqueProdutoSituacao" value="Situacao:"/>
+				<h:outputText id="estoqueBeanEstoqueProdutoSituacao" value="#{estoqueBean.estoque.produto.situacao}"/>
+				<h:outputText/>
+			</h:panelGrid>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

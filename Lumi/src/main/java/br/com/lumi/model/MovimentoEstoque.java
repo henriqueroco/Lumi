@@ -24,145 +24,151 @@ import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 
 import br.lumi.server.enuns.EUnidadeMedida;
+import br.com.lumi.model.Produto;
+import java.util.Set;
+import java.util.HashSet;
+import javax.persistence.OneToMany;
+import br.com.lumi.model.Atendimento;
 
 @Entity
 @Table(name = "movimento_estoque")
-public class MovimentoEstoque implements Serializable
-{
+public class MovimentoEstoque implements Serializable {
 
-   private static final String ATRIBUTO_ID = "id";
-   private static final String ATRIBUTO_VERSION = "version";
-   private static final String ATRIBUTO_DATA_MOVIMENTACAO = "data_movimentacao";
-   private static final String ATRIBUTO_TIPO_MOVIMENTACAO = "tipo_movimentacao";
-   private static final String ATRIBUTO_QUANTIDADE = "quantidade";
-   private static final String ATRIBUTO_UNIDADE_MEDIDA_MOVIMENTACAO = "unidade_medida_movimentacao";
-   private static final String ATRIBUTO_VALOR = "valor";
+	private static final String ATRIBUTO_ID = "id";
+	private static final String ATRIBUTO_VERSION = "version";
+	private static final String ATRIBUTO_DATA_MOVIMENTACAO = "data_movimentacao";
+	private static final String ATRIBUTO_TIPO_MOVIMENTACAO = "tipo_movimentacao";
+	private static final String ATRIBUTO_QUANTIDADE = "quantidade";
+	private static final String ATRIBUTO_UNIDADE_MEDIDA_MOVIMENTACAO = "unidade_medida_movimentacao";
+	private static final String ATRIBUTO_VALOR = "valor";
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
-   private Long id;
-   @Version
-   @Column(name = ATRIBUTO_VERSION)
-   private int version;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = ATRIBUTO_VERSION)
+	private int version;
 
-   @Column(name = ATRIBUTO_DATA_MOVIMENTACAO, nullable = false)
-   @Temporal(TemporalType.DATE)
-   private Date dataMovimento;
+	@Column(name = ATRIBUTO_DATA_MOVIMENTACAO, nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date dataMovimento;
 
-   @Enumerated
-   @Column(name = ATRIBUTO_TIPO_MOVIMENTACAO, nullable = false)
-   private ETipoMovimentacao tipoMovimento;
+	@Enumerated
+	@Column(name = ATRIBUTO_TIPO_MOVIMENTACAO, nullable = false)
+	private ETipoMovimentacao tipoMovimento;
 
-   @Column(name = ATRIBUTO_QUANTIDADE, nullable = false)
-   private BigDecimal quantidade;
+	@Column(name = ATRIBUTO_QUANTIDADE, nullable = false)
+	private BigDecimal quantidade;
 
-   @Enumerated
-   @Column(name = ATRIBUTO_UNIDADE_MEDIDA_MOVIMENTACAO, nullable = false)
-   private EUnidadeMedida unidadeMedidaMovimentacao;
+	@Enumerated
+	@Column(name = ATRIBUTO_UNIDADE_MEDIDA_MOVIMENTACAO, nullable = false)
+	private EUnidadeMedida unidadeMedidaMovimentacao;
 
-   @Column(name = ATRIBUTO_VALOR)
-   private BigDecimal valor;
+	@Column(name = ATRIBUTO_VALOR)
+	private BigDecimal valor;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	@OneToMany
+	private Set<Produto> produto = new HashSet<Produto>();
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	@OneToMany
+	private Set<Atendimento> atendimento = new HashSet<Atendimento>();
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public Long getId() {
+		return this.id;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (!(obj instanceof MovimentoEstoque))
-      {
-         return false;
-      }
-      MovimentoEstoque other = (MovimentoEstoque) obj;
-      if (id != null)
-      {
-         if (!id.equals(other.id))
-         {
-            return false;
-         }
-      }
-      return true;
-   }
+	public int getVersion() {
+		return this.version;
+	}
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((id == null) ? 0 : id.hashCode());
-      return result;
-   }
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 
-   public Date getDataMovimento()
-   {
-      return dataMovimento;
-   }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof MovimentoEstoque)) {
+			return false;
+		}
+		MovimentoEstoque other = (MovimentoEstoque) obj;
+		if (id != null) {
+			if (!id.equals(other.id)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-   public void setDataMovimento(Date dataMovimento)
-   {
-      this.dataMovimento = dataMovimento;
-   }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-   public ETipoMovimentacao getTipoMovimento()
-   {
-      return tipoMovimento;
-   }
+	public Date getDataMovimento() {
+		return dataMovimento;
+	}
 
-   public void setTipoMovimento(ETipoMovimentacao tipoMovimento)
-   {
-      this.tipoMovimento = tipoMovimento;
-   }
+	public void setDataMovimento(Date dataMovimento) {
+		this.dataMovimento = dataMovimento;
+	}
 
-   public BigDecimal getQuantidade()
-   {
-      return quantidade;
-   }
+	public ETipoMovimentacao getTipoMovimento() {
+		return tipoMovimento;
+	}
 
-   public void setQuantidade(BigDecimal quantidade)
-   {
-      this.quantidade = quantidade;
-   }
+	public void setTipoMovimento(ETipoMovimentacao tipoMovimento) {
+		this.tipoMovimento = tipoMovimento;
+	}
 
-   public EUnidadeMedida getUnidadeMedidaMovimentacao()
-   {
-      return unidadeMedidaMovimentacao;
-   }
+	public BigDecimal getQuantidade() {
+		return quantidade;
+	}
 
-   public void setUnidadeMedidaMovimentacao(
-         EUnidadeMedida unidadeMedidaMovimentacao)
-   {
-      this.unidadeMedidaMovimentacao = unidadeMedidaMovimentacao;
-   }
+	public void setQuantidade(BigDecimal quantidade) {
+		this.quantidade = quantidade;
+	}
 
-   public BigDecimal getValor()
-   {
-      return valor;
-   }
+	public EUnidadeMedida getUnidadeMedidaMovimentacao() {
+		return unidadeMedidaMovimentacao;
+	}
 
-   public void setValor(BigDecimal valor)
-   {
-      this.valor = valor;
-   }
+	public void setUnidadeMedidaMovimentacao(
+			EUnidadeMedida unidadeMedidaMovimentacao) {
+		this.unidadeMedidaMovimentacao = unidadeMedidaMovimentacao;
+	}
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
+	public Set<Produto> getProduto() {
+		return this.produto;
+	}
+
+	public void setProduto(final Set<Produto> produto) {
+		this.produto = produto;
+	}
+
+	public Set<Atendimento> getAtendimento() {
+		return this.atendimento;
+	}
+
+	public void setAtendimento(final Set<Atendimento> atendimento) {
+		this.atendimento = atendimento;
+	}
 }

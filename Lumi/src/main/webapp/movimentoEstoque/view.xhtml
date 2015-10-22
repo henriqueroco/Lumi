@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{movimentoEstoqueBean.id}'/>
+		<f:event type="preRenderView" listener='#{movimentoEstoqueBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Movimento Estoque"/>
+
+	<ui:define name="header">
+		Movimento Estoque
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Movimento Estoque
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="movimentoEstoqueBeanMovimentoEstoqueDataMovimento" value="Data Movimento:"/>
+			<h:outputText id="movimentoEstoqueBeanMovimentoEstoqueDataMovimento" value="#{movimentoEstoqueBean.movimentoEstoque.dataMovimento}">
+				<f:convertDateTime type="date"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="movimentoEstoqueBeanMovimentoEstoqueTipoMovimento" value="Tipo Movimento:"/>
+			<h:outputText id="movimentoEstoqueBeanMovimentoEstoqueTipoMovimento" value="#{movimentoEstoqueBean.movimentoEstoque.tipoMovimento}"/>
+			<h:outputText/>
+			<h:outputLabel for="movimentoEstoqueBeanMovimentoEstoqueQuantidade" value="Quantidade:"/>
+			<h:outputText id="movimentoEstoqueBeanMovimentoEstoqueQuantidade" value="#{movimentoEstoqueBean.movimentoEstoque.quantidade}"/>
+			<h:outputText/>
+			<h:outputLabel for="movimentoEstoqueBeanMovimentoEstoqueUnidadeMedidaMovimentacao" value="Unidade Medida Movimentacao:"/>
+			<h:outputText id="movimentoEstoqueBeanMovimentoEstoqueUnidadeMedidaMovimentacao" value="#{movimentoEstoqueBean.movimentoEstoque.unidadeMedidaMovimentacao}"/>
+			<h:outputText/>
+			<h:outputLabel for="movimentoEstoqueBeanMovimentoEstoqueValor" value="Valor:"/>
+			<h:outputText id="movimentoEstoqueBeanMovimentoEstoqueValor" value="#{movimentoEstoqueBean.movimentoEstoque.valor}"/>
+			<h:outputText/>
+			<h:outputLabel for="movimentoEstoqueBeanMovimentoEstoqueProduto" value="Produto:"/>
+			<h:dataTable id="movimentoEstoqueBeanMovimentoEstoqueProduto" styleClass="data-table" value="#{forgeview:asList(movimentoEstoqueBean.movimentoEstoque.produto)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descricao"/>
+					</f:facet>
+					<h:link outcome="/produto/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDescricao" value="#{_item.descricao}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descricao Marca"/>
+					</f:facet>
+					<h:link outcome="/produto/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDescricaoMarca" value="#{_item.descricaoMarca}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo Embalagem"/>
+					</f:facet>
+					<h:link outcome="/produto/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemTipoEmbalagem" value="#{_item.tipoEmbalagem}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Quantidade Embalagem"/>
+					</f:facet>
+					<h:link outcome="/produto/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemQuantidadeEmbalagem" value="#{_item.quantidadeEmbalagem}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Unidade Medida Embalagem"/>
+					</f:facet>
+					<h:link outcome="/produto/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemUnidadeMedidaEmbalagem" value="#{_item.unidadeMedidaEmbalagem}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="movimentoEstoqueBeanMovimentoEstoqueAtendimento" value="Atendimento:"/>
+			<h:dataTable id="movimentoEstoqueBeanMovimentoEstoqueAtendimento" styleClass="data-table" value="#{forgeview:asList(movimentoEstoqueBean.movimentoEstoque.atendimento)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Data"/>
+					</f:facet>
+					<h:link outcome="/atendimento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemData" value="#{_item.data}">
+							<f:convertDateTime type="date"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Hora Inicio"/>
+					</f:facet>
+					<h:link outcome="/atendimento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemHoraInicio" value="#{_item.horaInicio}">
+							<f:convertDateTime type="time"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Hora Fim"/>
+					</f:facet>
+					<h:link outcome="/atendimento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemHoraFim" value="#{_item.horaFim}">
+							<f:convertDateTime type="time"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

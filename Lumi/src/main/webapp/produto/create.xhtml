@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{produtoBean.id}'/>
+		<f:event type="preRenderView" listener='#{produtoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Produto"/>
+
+	<ui:define name="header">
+		Produto
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty produtoBean.id}'>
+				Edit existing Produto
+			</c:when>
+			<c:otherwise>
+				Create a new Produto
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="produtoBeanProdutoDescricao" value="Descricao:"/>
+				<h:panelGroup>
+					<h:inputText id="produtoBeanProdutoDescricao" maxLength="50" required="true" value="#{produtoBean.produto.descricao}"/>
+					<h:message for="produtoBeanProdutoDescricao" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="produtoBeanProdutoDescricaoMarca" value="Descricao Marca:"/>
+				<h:panelGroup>
+					<h:inputText id="produtoBeanProdutoDescricaoMarca" maxLength="50" required="true" value="#{produtoBean.produto.descricaoMarca}"/>
+					<h:message for="produtoBeanProdutoDescricaoMarca" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="produtoBeanProdutoTipoEmbalagem" value="Tipo Embalagem:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="produtoBeanProdutoTipoEmbalagem" required="true" value="#{produtoBean.produto.tipoEmbalagem}">
+						<f:selectItem itemValue="POTE"/>
+						<f:selectItem itemValue="UNIDADE"/>
+						<f:selectItem itemValue="BISNAGA"/>
+					</h:selectOneMenu>
+					<h:message for="produtoBeanProdutoTipoEmbalagem" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="produtoBeanProdutoQuantidadeEmbalagem" value="Quantidade Embalagem:"/>
+				<h:panelGroup>
+					<h:inputText id="produtoBeanProdutoQuantidadeEmbalagem" required="true" value="#{produtoBean.produto.quantidadeEmbalagem}"/>
+					<h:message for="produtoBeanProdutoQuantidadeEmbalagem" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="produtoBeanProdutoUnidadeMedidaEmbalagem" value="Unidade Medida Embalagem:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="produtoBeanProdutoUnidadeMedidaEmbalagem" required="true" value="#{produtoBean.produto.unidadeMedidaEmbalagem}">
+						<f:selectItem itemValue="UND"/>
+						<f:selectItem itemValue="KG"/>
+						<f:selectItem itemValue="L"/>
+					</h:selectOneMenu>
+					<h:message for="produtoBeanProdutoUnidadeMedidaEmbalagem" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="produtoBeanProdutoFormaUtilizacao" value="Forma Utilizacao:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="produtoBeanProdutoFormaUtilizacao" required="true" value="#{produtoBean.produto.formaUtilizacao}">
+						<f:selectItem itemValue="FIXO"/>
+						<f:selectItem itemValue="SUGERIDO"/>
+					</h:selectOneMenu>
+					<h:message for="produtoBeanProdutoFormaUtilizacao" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="produtoBeanProdutoUnidadeMedidaUtilizacao" value="Unidade Medida Utilizacao:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="produtoBeanProdutoUnidadeMedidaUtilizacao" value="#{produtoBean.produto.unidadeMedidaUtilizacao}">
+						<f:selectItem/>
+						<f:selectItem itemValue="UND"/>
+						<f:selectItem itemValue="KG"/>
+						<f:selectItem itemValue="L"/>
+					</h:selectOneMenu>
+					<h:message for="produtoBeanProdutoUnidadeMedidaUtilizacao" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="produtoBeanProdutoPontos" value="Pontos:"/>
+				<h:panelGroup>
+					<h:inputText id="produtoBeanProdutoPontos" required="true" value="#{produtoBean.produto.pontos}"/>
+					<h:message for="produtoBeanProdutoPontos" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="produtoBeanProdutoSituacao" value="Situacao:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="produtoBeanProdutoSituacao" required="true" value="#{produtoBean.produto.situacao}">
+						<f:selectItem itemValue="ATIVO"/>
+						<f:selectItem itemValue="INATIVO"/>
+					</h:selectOneMenu>
+					<h:message for="produtoBeanProdutoSituacao" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action='#{produtoBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty produtoBean.id}'>
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{produtoBean.id}'/>
+						</h:link>
+						<h:commandLink value="Delete" action='#{produtoBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

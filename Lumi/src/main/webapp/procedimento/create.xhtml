@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{procedimentoBean.id}'/>
+		<f:event type="preRenderView" listener='#{procedimentoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Procedimento"/>
+
+	<ui:define name="header">
+		Procedimento
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty procedimentoBean.id}'>
+				Edit existing Procedimento
+			</c:when>
+			<c:otherwise>
+				Create a new Procedimento
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="procedimentoBeanProcedimentoDescricao" value="Descricao:"/>
+				<h:panelGroup>
+					<h:inputText id="procedimentoBeanProcedimentoDescricao" required="true" value="#{procedimentoBean.procedimento.descricao}"/>
+					<h:message for="procedimentoBeanProcedimentoDescricao" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="procedimentoBeanProcedimentoProdutos" value="Produtos:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{procedimentoBean.procedimento.produtos}"/>
+					<h:dataTable id="procedimentoBeanProcedimentoProdutos" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Descricao"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemDescricao" value="#{_item.descricao}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Descricao Marca"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemDescricaoMarca" value="#{_item.descricaoMarca}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Tipo Embalagem"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemTipoEmbalagem" value="#{_item.tipoEmbalagem}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Quantidade Embalagem"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemQuantidadeEmbalagem" value="#{_item.quantidadeEmbalagem}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Unidade Medida Embalagem"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemUnidadeMedidaEmbalagem" value="#{_item.unidadeMedidaEmbalagem}"/>
+							</h:link>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+						</h:column>
+					</h:dataTable>
+					<h:panelGrid columnClasses=",remove-column" columns="2" styleClass="data-table-footer">
+						<h:selectOneMenu converter="#{produtoBean.converter}" id="procedimentoBeanProcedimentoProdutosSelect" value="#{requestScope['procedimentoBeanProcedimentoProdutosSelect']}">
+							<f:selectItem/>
+							<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{produtoBean.all}" var="_item"/>
+						</h:selectOneMenu>
+						<h:commandLink action="#{_collection.add(requestScope['procedimentoBeanProcedimentoProdutosSelect'])}" id="procedimentoBeanProcedimentoProdutosAdd" onclick="if (document.getElementById(document.forms[0].id+':procedimentoBeanProcedimentoProdutosSelect').selectedIndex &lt; 1) { alert('Must select a Produto'); return false; }" styleClass="add-button"/>
+					</h:panelGrid>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="procedimentoBeanProcedimentoProduto" value="Produto:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{procedimentoBean.procedimento.produto}"/>
+					<h:dataTable id="procedimentoBeanProcedimentoProduto" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Descricao"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemDescricao" value="#{_item.descricao}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Descricao Marca"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemDescricaoMarca" value="#{_item.descricaoMarca}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Tipo Embalagem"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemTipoEmbalagem" value="#{_item.tipoEmbalagem}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Quantidade Embalagem"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemQuantidadeEmbalagem" value="#{_item.quantidadeEmbalagem}"/>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Unidade Medida Embalagem"/>
+							</f:facet>
+							<h:link outcome="/produto/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemUnidadeMedidaEmbalagem" value="#{_item.unidadeMedidaEmbalagem}"/>
+							</h:link>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+						</h:column>
+					</h:dataTable>
+					<h:panelGrid columnClasses=",remove-column" columns="2" styleClass="data-table-footer">
+						<h:selectOneMenu converter="#{produtoBean.converter}" id="procedimentoBeanProcedimentoProdutoSelect" value="#{requestScope['procedimentoBeanProcedimentoProdutoSelect']}">
+							<f:selectItem/>
+							<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{produtoBean.all}" var="_item"/>
+						</h:selectOneMenu>
+						<h:commandLink action="#{_collection.add(requestScope['procedimentoBeanProcedimentoProdutoSelect'])}" id="procedimentoBeanProcedimentoProdutoAdd" onclick="if (document.getElementById(document.forms[0].id+':procedimentoBeanProcedimentoProdutoSelect').selectedIndex &lt; 1) { alert('Must select a Produto'); return false; }" styleClass="add-button"/>
+					</h:panelGrid>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action='#{procedimentoBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty procedimentoBean.id}'>
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{procedimentoBean.id}'/>
+						</h:link>
+						<h:commandLink value="Delete" action='#{procedimentoBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
