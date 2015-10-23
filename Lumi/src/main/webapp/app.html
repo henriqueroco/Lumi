@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Lumi - Estética e Maquiagens</title>
+	<title>Lumi</title>
     <link href="styles/bootstrap.css" rel="stylesheet" media="screen">
     <link href="styles/bootstrap-theme.css" rel="stylesheet" media="screen">
     <link href="styles/main.css" rel="stylesheet" media="screen">
@@ -20,7 +20,7 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-				    <a class="navbar-brand" href="#https://www.facebook.com/centrodeesteticalumi?fref=ts">Lumi - Estética e Maquiagens</a>
+				    <a class="navbar-brand" href="#">Lumi</a>
 			    </div>
 			</div>
     	</div>
@@ -30,19 +30,20 @@
                 <!-- sidebar -->
                 <div class="col-xs-6 col-sm-3 well sidebar-offcanvas">
                     <a href="app.html">
-                        <img class="hidden-xs img-responsive" src="img/Lumi.png" alt="JBoss Forge"></img>
+                        <img class="hidden-xs img-responsive" src="img/forge-logo.png" alt="JBoss Forge"></img>
                     </a>
                     <nav class="sidebar-nav" ng-controller="NavController" role="navigation">
                         <div id="sidebar-entries" class="list-group">
-                        	<a class="list-group-item" ng-class="{active: matchesRoute('Clientes')}" href="#/Clientes" data-toggle="offcanvas">Clientes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Agendas')}" href="#/Agendas" data-toggle="offcanvas">Agendas</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Atendimentos')}" href="#/Atendimentos" data-toggle="offcanvas">Atendimentos</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Bairros')}" href="#/Bairros" data-toggle="offcanvas">Bairros</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Clientes')}" href="#/Clientes" data-toggle="offcanvas">Clientes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Esteticista')}" href="#/Esteticista" data-toggle="offcanvas">Esteticista</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Localidades')}" href="#/Localidades" data-toggle="offcanvas">Localidades</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Logradouros')}" href="#/Logradouros" data-toggle="offcanvas">Logradouros</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('MovimentoEstoques')}" href="#/MovimentoEstoques" data-toggle="offcanvas">MovimentoEstoques</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Procedimentos')}" href="#/Procedimentos" data-toggle="offcanvas">Procedimentos</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Produtos')}" href="#/Produtos" data-toggle="offcanvas">Produtos</a>
-                        	<a class="list-group-item" ng-class="{active: matchesRoute('Esteticista')}" href="#/Esteticista" data-toggle="offcanvas">Esteticista</a>
-                        	<a class="list-group-item" ng-class="{active: matchesRoute('Localidades')}" href="#/Localidades" data-toggle="offcanvas">Localidades</a>
-                        	<a class="list-group-item" ng-class="{active: matchesRoute('Bairros')}" href="#/Bairros" data-toggle="offcanvas">Bairros</a>
-                        	<a class="list-group-item" ng-class="{active: matchesRoute('Logradouros')}" href="#/Logradouros" data-toggle="offcanvas">Logradouros</a>
                         </div>
                     </nav>
                 </div>
@@ -82,6 +83,10 @@
     <script src="scripts/services/flash.js"></script>
     <script src="scripts/services/locationParser.js"></script>
     <script src="scripts/controllers/flashController.js"></script>
+    <script src="scripts/services/AgendaFactory.js"></script>
+    <script src="scripts/controllers/newAgendaController.js"></script>
+    <script src="scripts/controllers/searchAgendaController.js"></script>
+    <script src="scripts/controllers/editAgendaController.js"></script>
     <script src="scripts/services/AtendimentoFactory.js"></script>
     <script src="scripts/controllers/newAtendimentoController.js"></script>
     <script src="scripts/controllers/searchAtendimentoController.js"></script>

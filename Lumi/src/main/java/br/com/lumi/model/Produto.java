@@ -43,7 +43,7 @@ public class Produto implements Serializable {
 	private static final String ATRIBUTO_SITUACAO = "situacao";
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
 	private Long id;
 	@Version

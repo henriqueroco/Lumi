@@ -26,7 +26,7 @@ public class Bairro implements Serializable {
 	private static final String ATRIBUTO_VERSION = "version";
 	private static final String ATRIBUTO_DESCRICAO_BAIRRO = "descricao_bairro";
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
 	private Long id;
 	@Version

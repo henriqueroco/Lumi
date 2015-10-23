@@ -4,6 +4,9 @@ angular.module('lumi',['ngRoute','ngResource'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/',{templateUrl:'views/landing.html',controller:'LandingPageController'})
+      .when('/Agendas',{templateUrl:'views/Agenda/search.html',controller:'SearchAgendaController'})
+      .when('/Agendas/new',{templateUrl:'views/Agenda/detail.html',controller:'NewAgendaController'})
+      .when('/Agendas/edit/:AgendaId',{templateUrl:'views/Agenda/detail.html',controller:'EditAgendaController'})
       .when('/Atendimentos',{templateUrl:'views/Atendimento/search.html',controller:'SearchAtendimentoController'})
       .when('/Atendimentos/new',{templateUrl:'views/Atendimento/detail.html',controller:'NewAtendimentoController'})
       .when('/Atendimentos/edit/:AtendimentoId',{templateUrl:'views/Atendimento/detail.html',controller:'EditAtendimentoController'})
