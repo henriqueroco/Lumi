@@ -1,14 +1,14 @@
 <div class="form-horizontal">
-    <h3>Create a new Produto</h3>
+    <h3>Criar um(a) novo(a)Produto</h3>
     <div class="form-group">
         <div class="col-md-offset-2 col-sm-2">
-            <a id="Create" name="Create" class="btn btn-primary" href="#/Produtos/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+            <a id="Create" name="Create" class="btn btn-primary" href="#/Produtos/new"><span class="glyphicon glyphicon-plus-sign"></span> Novo</a>
         </div>
     </div>
 </div>
 <hr/>
 <div>
-    <h3>Search for Produtos</h3>
+    <h3>Procurar por Produtos</h3>
     <form id="ProdutoSearch" class="form-horizontal">
         
 
@@ -30,7 +30,7 @@
         <label for="tipoEmbalagem" class="col-sm-2 control-label">Tipo Embalagem</label>
         <div class="col-sm-10">
             <select id="tipoEmbalagem" name="tipoEmbalagem" class="form-control" ng-model="search.tipoEmbalagem" ng-options="t as t for t in tipoEmbalagemList">
-                <option value="">Choose a Tipo Embalagem</option>
+                <option value="">Escolha um(a) Tipo Embalagem</option>
             </select>
         </div>
     </div>
@@ -46,7 +46,7 @@
         <label for="unidadeMedidaEmbalagem" class="col-sm-2 control-label">Unidade Medida Embalagem</label>
         <div class="col-sm-10">
             <select id="unidadeMedidaEmbalagem" name="unidadeMedidaEmbalagem" class="form-control" ng-model="search.unidadeMedidaEmbalagem" ng-options="u as u for u in unidadeMedidaEmbalagemList">
-                <option value="">Choose a Unidade Medida Embalagem</option>
+                <option value="">Escolha um(a) Unidade Medida Embalagem</option>
             </select>
         </div>
     </div>
@@ -55,7 +55,7 @@
         <label for="formaUtilizacao" class="col-sm-2 control-label">Forma Utilizacao</label>
         <div class="col-sm-10">
             <select id="formaUtilizacao" name="formaUtilizacao" class="form-control" ng-model="search.formaUtilizacao" ng-options="f as f for f in formaUtilizacaoList">
-                <option value="">Choose a Forma Utilizacao</option>
+                <option value="">Escolha um(a) Forma Utilizacao</option>
             </select>
         </div>
     </div>
@@ -64,7 +64,7 @@
         <label for="unidadeMedidaUtilizacao" class="col-sm-2 control-label">Unidade Medida Utilizacao</label>
         <div class="col-sm-10">
             <select id="unidadeMedidaUtilizacao" name="unidadeMedidaUtilizacao" class="form-control" ng-model="search.unidadeMedidaUtilizacao" ng-options="u as u for u in unidadeMedidaUtilizacaoList">
-                <option value="">Choose a Unidade Medida Utilizacao</option>
+                <option value="">Escolha um(a) Unidade Medida Utilizacao</option>
             </select>
         </div>
     </div>
@@ -80,7 +80,7 @@
         <label for="situacao" class="col-sm-2 control-label">Situacao</label>
         <div class="col-sm-10">
             <select id="situacao" name="situacao" class="form-control" ng-model="search.situacao" ng-options="s as s for s in situacaoList">
-                <option value="">Choose a Situacao</option>
+                <option value="">Escolha um(a) Situacao</option>
             </select>
         </div>
     </div>
@@ -88,7 +88,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-sm-10">
-                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Procurar</a>
             </div>
         </div>
     </form>
@@ -110,7 +110,7 @@
                 </tr>
             </thead>
             <tbody id="search-results-body">
-                <tr ng-repeat="result in searchResults | searchFilter:searchResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
                     <td><a href="#/Produtos/edit/{{result.id}}">{{result.descricao}}</a></td>
                     <td><a href="#/Produtos/edit/{{result.id}}">{{result.descricaoMarca}}</a></td>
                     <td><a href="#/Produtos/edit/{{result.id}}">{{result.tipoEmbalagem}}</a></td>

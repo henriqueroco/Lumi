@@ -22,9 +22,11 @@ import java.math.BigDecimal;
 import br.lumi.server.enuns.EUnidadeMedida;
 import br.lumi.server.enuns.EFormaUtilizacao;
 import br.lumi.server.enuns.ESituacao;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = Produto.TABELA)
+@XmlRootElement
 public class Produto implements Serializable {
 
 	static final String TABELA = "produto";

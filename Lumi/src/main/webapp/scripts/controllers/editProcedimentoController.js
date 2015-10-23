@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('EditProcedimentoController', function($scope, $routeParams, $location, ProcedimentoResource , ProdutoResource) {
+angular.module('lumi').controller('EditProcedimentoController', function($scope, $routeParams, $location, flash, ProcedimentoResource , ProdutoResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -32,6 +32,7 @@ angular.module('lumi').controller('EditProcedimentoController', function($scope,
             });
         };
         var errorCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The procedimento could not be found.'});
             $location.path("/Procedimentos");
         };
         ProcedimentoResource.get({ProcedimentoId:$routeParams.ProcedimentoId}, successCallback, errorCallback);
@@ -43,11 +44,15 @@ angular.module('lumi').controller('EditProcedimentoController', function($scope,
 
     $scope.save = function() {
         var successCallback = function(){
+            flash.setMessage({'type':'success','text':'The procedimento was updated successfully.'}, true);
             $scope.get();
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         $scope.procedimento.$update(successCallback, errorCallback);
     };
@@ -58,11 +63,15 @@ angular.module('lumi').controller('EditProcedimentoController', function($scope,
 
     $scope.remove = function() {
         var successCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The procedimento was deleted.'});
             $location.path("/Procedimentos");
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         }; 
         $scope.procedimento.$remove(successCallback, errorCallback);
     };

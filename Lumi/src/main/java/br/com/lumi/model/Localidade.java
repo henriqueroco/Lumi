@@ -18,9 +18,11 @@ import br.lumi.server.enuns.EUf;
 import javax.persistence.Enumerated;
 
 import br.lumi.server.enuns.EPais;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = Localidade.TABELA)
+@XmlRootElement
 public class Localidade implements Serializable {
 
 	static final String TABELA = "localidade";

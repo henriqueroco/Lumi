@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('SearchLogradouroController', function($scope, $http, LogradouroResource , BairroResource, ClienteResource) {
+angular.module('lumi').controller('SearchLogradouroController', function($scope, $http, $filter, LogradouroResource , BairroResource) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -21,7 +21,8 @@ angular.module('lumi').controller('SearchLogradouroController', function($scope,
 
     $scope.performSearch = function() {
         $scope.searchResults = LogradouroResource.queryAll(function(){
-            $scope.numberOfPages();
+            $scope.filteredResults = $filter('searchFilter')($scope.searchResults, $scope);
+            $scope.currentPage = 0;
         });
     };
     

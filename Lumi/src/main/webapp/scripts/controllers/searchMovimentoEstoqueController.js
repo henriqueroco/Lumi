@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('SearchMovimentoEstoqueController', function($scope, $http, MovimentoEstoqueResource ) {
+angular.module('lumi').controller('SearchMovimentoEstoqueController', function($scope, $http, $filter, MovimentoEstoqueResource , ProdutoResource, AtendimentoResource) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -17,10 +17,20 @@ angular.module('lumi').controller('SearchMovimentoEstoqueController', function($
         }
         return max;
     };
+    $scope.tipoMovimentoList = [
+        "ENTRADA",
+        "SAIDA"
+    ];
+    $scope.unidadeMedidaMovimentacaoList = [
+        "UND",
+        "KG",
+        "L"
+    ];
 
     $scope.performSearch = function() {
         $scope.searchResults = MovimentoEstoqueResource.queryAll(function(){
-            $scope.numberOfPages();
+            $scope.filteredResults = $filter('searchFilter')($scope.searchResults, $scope);
+            $scope.currentPage = 0;
         });
     };
     

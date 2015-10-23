@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('SearchProdutoController', function($scope, $http, ProdutoResource ) {
+angular.module('lumi').controller('SearchProdutoController', function($scope, $http, $filter, ProdutoResource ) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -43,7 +43,8 @@ angular.module('lumi').controller('SearchProdutoController', function($scope, $h
 
     $scope.performSearch = function() {
         $scope.searchResults = ProdutoResource.queryAll(function(){
-            $scope.numberOfPages();
+            $scope.filteredResults = $filter('searchFilter')($scope.searchResults, $scope);
+            $scope.currentPage = 0;
         });
     };
     

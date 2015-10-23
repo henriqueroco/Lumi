@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('SearchClienteController', function($scope, $http, ClienteResource , LogradouroResource) {
+angular.module('lumi').controller('SearchClienteController', function($scope, $http, $filter, ClienteResource , LogradouroResource) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -29,7 +29,8 @@ angular.module('lumi').controller('SearchClienteController', function($scope, $h
 
     $scope.performSearch = function() {
         $scope.searchResults = ClienteResource.queryAll(function(){
-            $scope.numberOfPages();
+            $scope.filteredResults = $filter('searchFilter')($scope.searchResults, $scope);
+            $scope.currentPage = 0;
         });
     };
     

@@ -29,9 +29,11 @@ import java.util.Set;
 import java.util.HashSet;
 import javax.persistence.OneToMany;
 import br.com.lumi.model.Atendimento;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "movimento_estoque")
+@XmlRootElement
 public class MovimentoEstoque implements Serializable {
 
 	private static final String ATRIBUTO_ID = "id";

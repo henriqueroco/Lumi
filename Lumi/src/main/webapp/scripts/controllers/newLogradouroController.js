@@ -1,5 +1,5 @@
 
-angular.module('lumi').controller('NewLogradouroController', function ($scope, $location, locationParser, LogradouroResource , BairroResource, ClienteResource) {
+angular.module('lumi').controller('NewLogradouroController', function ($scope, $location, locationParser, flash, LogradouroResource , BairroResource) {
     $scope.disabled = false;
     $scope.$location = $location;
     $scope.logradouro = $scope.logradouro || {};
@@ -19,34 +19,19 @@ angular.module('lumi').controller('NewLogradouroController', function ($scope, $
         }
     });
     
-    $scope.clienteList = ClienteResource.queryAll(function(items){
-        $scope.clienteSelectionList = $.map(items, function(item) {
-            return ( {
-                value : item.id,
-                text : item.id
-            });
-        });
-    });
-    $scope.$watch("clienteSelection", function(selection) {
-        if (typeof selection != 'undefined') {
-            $scope.logradouro.cliente = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.logradouro.cliente.push(collectionItem);
-            });
-        }
-    });
-    
 
     $scope.save = function() {
         var successCallback = function(data,responseHeaders){
             var id = locationParser(responseHeaders);
-            $location.path('/Logradouros/edit/' + id);
-            $scope.displayError = false;
+            flash.setMessage({'type':'success','text':'The logradouro was created successfully.'});
+            $location.path('/Logradouros');
         };
-        var errorCallback = function() {
-            $scope.displayError = true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         LogradouroResource.save($scope.logradouro, successCallback, errorCallback);
     };

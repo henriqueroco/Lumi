@@ -1,5 +1,5 @@
 
-angular.module('lumi').controller('NewLocalidadeController', function ($scope, $location, locationParser, LocalidadeResource , BairroResource) {
+angular.module('lumi').controller('NewLocalidadeController', function ($scope, $location, locationParser, flash, LocalidadeResource ) {
     $scope.disabled = false;
     $scope.$location = $location;
     $scope.localidade = $scope.localidade || {};
@@ -294,34 +294,19 @@ angular.module('lumi').controller('NewLocalidadeController', function ($scope, $
         "ZIMBABUE"
     ];
     
-    $scope.bairrosList = BairroResource.queryAll(function(items){
-        $scope.bairrosSelectionList = $.map(items, function(item) {
-            return ( {
-                value : item.id,
-                text : item.id
-            });
-        });
-    });
-    $scope.$watch("bairrosSelection", function(selection) {
-        if (typeof selection != 'undefined') {
-            $scope.localidade.bairros = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.localidade.bairros.push(collectionItem);
-            });
-        }
-    });
-    
 
     $scope.save = function() {
         var successCallback = function(data,responseHeaders){
             var id = locationParser(responseHeaders);
-            $location.path('/Localidades/edit/' + id);
-            $scope.displayError = false;
+            flash.setMessage({'type':'success','text':'The localidade was created successfully.'});
+            $location.path('/Localidades');
         };
-        var errorCallback = function() {
-            $scope.displayError = true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         LocalidadeResource.save($scope.localidade, successCallback, errorCallback);
     };

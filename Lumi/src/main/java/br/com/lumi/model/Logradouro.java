@@ -14,9 +14,11 @@ import javax.persistence.Version;
 import java.lang.Override;
 import br.com.lumi.model.Bairro;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = Logradouro.TABELA)
+@XmlRootElement
 public class Logradouro implements Serializable {
 
 	static final String TABELA = "logradouro";

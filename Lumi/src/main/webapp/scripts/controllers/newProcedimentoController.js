@@ -1,5 +1,5 @@
 
-angular.module('lumi').controller('NewProcedimentoController', function ($scope, $location, locationParser, ProcedimentoResource , ProdutoResource) {
+angular.module('lumi').controller('NewProcedimentoController', function ($scope, $location, locationParser, flash, ProcedimentoResource , ProdutoResource) {
     $scope.disabled = false;
     $scope.$location = $location;
     $scope.procedimento = $scope.procedimento || {};
@@ -22,16 +22,20 @@ angular.module('lumi').controller('NewProcedimentoController', function ($scope,
             });
         }
     });
-    
+
 
     $scope.save = function() {
         var successCallback = function(data,responseHeaders){
             var id = locationParser(responseHeaders);
-            $location.path('/Procedimentos/edit/' + id);
-            $scope.displayError = false;
+            flash.setMessage({'type':'success','text':'The procedimento was created successfully.'});
+            $location.path('/Procedimentos');
         };
-        var errorCallback = function() {
-            $scope.displayError = true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         ProcedimentoResource.save($scope.procedimento, successCallback, errorCallback);
     };

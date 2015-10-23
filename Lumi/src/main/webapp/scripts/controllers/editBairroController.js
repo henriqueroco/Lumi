@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('EditBairroController', function($scope, $routeParams, $location, BairroResource , LocalidadeResource, LogradouroResource) {
+angular.module('lumi').controller('EditBairroController', function($scope, $routeParams, $location, flash, BairroResource , LocalidadeResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -26,29 +26,9 @@ angular.module('lumi').controller('EditBairroController', function($scope, $rout
                     return labelObject;
                 });
             });
-            LogradouroResource.queryAll(function(items) {
-                $scope.logradouroSelectionList = $.map(items, function(item) {
-                    var wrappedObject = {
-                        id : item.id
-                    };
-                    var labelObject = {
-                        value : item.id,
-                        text : item.id
-                    };
-                    if($scope.bairro.logradouro){
-                        $.each($scope.bairro.logradouro, function(idx, element) {
-                            if(item.id == element.id) {
-                                $scope.logradouroSelection.push(labelObject);
-                                $scope.bairro.logradouro.push(wrappedObject);
-                            }
-                        });
-                        self.original.logradouro = $scope.bairro.logradouro;
-                    }
-                    return labelObject;
-                });
-            });
         };
         var errorCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The bairro could not be found.'});
             $location.path("/Bairros");
         };
         BairroResource.get({BairroId:$routeParams.BairroId}, successCallback, errorCallback);
@@ -60,11 +40,15 @@ angular.module('lumi').controller('EditBairroController', function($scope, $rout
 
     $scope.save = function() {
         var successCallback = function(){
+            flash.setMessage({'type':'success','text':'The bairro was updated successfully.'}, true);
             $scope.get();
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         $scope.bairro.$update(successCallback, errorCallback);
     };
@@ -75,11 +59,15 @@ angular.module('lumi').controller('EditBairroController', function($scope, $rout
 
     $scope.remove = function() {
         var successCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The bairro was deleted.'});
             $location.path("/Bairros");
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         }; 
         $scope.bairro.$remove(successCallback, errorCallback);
     };
@@ -88,17 +76,6 @@ angular.module('lumi').controller('EditBairroController', function($scope, $rout
         if (typeof selection != 'undefined') {
             $scope.bairro.localidade = {};
             $scope.bairro.localidade.id = selection.value;
-        }
-    });
-    $scope.logradouroSelection = $scope.logradouroSelection || [];
-    $scope.$watch("logradouroSelection", function(selection) {
-        if (typeof selection != 'undefined' && $scope.bairro) {
-            $scope.bairro.logradouro = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.bairro.logradouro.push(collectionItem);
-            });
         }
     });
     

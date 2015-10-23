@@ -41,9 +41,6 @@ public class Procedimento implements Serializable {
 	@ManyToMany
 	private Set<Produto> produtos = new HashSet<Produto>();
 
-	@ManyToMany
-	private Set<Produto> produto = new HashSet<Produto>();
-
 	public Long getId() {
 		return this.id;
 	}
@@ -109,11 +106,4 @@ public class Procedimento implements Serializable {
 		this.produtos = produtos;
 	}
 
-	public Set<Produto> getProduto() {
-		return this.produto;
-	}
-
-	public void setProduto(final Set<Produto> produto) {
-		this.produto = produto;
-	}
 }

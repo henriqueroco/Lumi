@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('EditEsteticistaController', function($scope, $routeParams, $location, EsteticistaResource ) {
+angular.module('lumi').controller('EditEsteticistaController', function($scope, $routeParams, $location, flash, EsteticistaResource ) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -11,6 +11,7 @@ angular.module('lumi').controller('EditEsteticistaController', function($scope, 
             $scope.esteticista = new EsteticistaResource(self.original);
         };
         var errorCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The esteticista could not be found.'});
             $location.path("/Esteticista");
         };
         EsteticistaResource.get({EsteticistaId:$routeParams.EsteticistaId}, successCallback, errorCallback);
@@ -22,11 +23,15 @@ angular.module('lumi').controller('EditEsteticistaController', function($scope, 
 
     $scope.save = function() {
         var successCallback = function(){
+            flash.setMessage({'type':'success','text':'The esteticista was updated successfully.'}, true);
             $scope.get();
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         $scope.esteticista.$update(successCallback, errorCallback);
     };
@@ -37,11 +42,15 @@ angular.module('lumi').controller('EditEsteticistaController', function($scope, 
 
     $scope.remove = function() {
         var successCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The esteticista was deleted.'});
             $location.path("/Esteticista");
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         }; 
         $scope.esteticista.$remove(successCallback, errorCallback);
     };

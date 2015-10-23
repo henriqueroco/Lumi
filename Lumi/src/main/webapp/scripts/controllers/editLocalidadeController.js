@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('EditLocalidadeController', function($scope, $routeParams, $location, LocalidadeResource , BairroResource) {
+angular.module('lumi').controller('EditLocalidadeController', function($scope, $routeParams, $location, flash, LocalidadeResource ) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -9,29 +9,9 @@ angular.module('lumi').controller('EditLocalidadeController', function($scope, $
         var successCallback = function(data){
             self.original = data;
             $scope.localidade = new LocalidadeResource(self.original);
-            BairroResource.queryAll(function(items) {
-                $scope.bairrosSelectionList = $.map(items, function(item) {
-                    var wrappedObject = {
-                        id : item.id
-                    };
-                    var labelObject = {
-                        value : item.id,
-                        text : item.id
-                    };
-                    if($scope.localidade.bairros){
-                        $.each($scope.localidade.bairros, function(idx, element) {
-                            if(item.id == element.id) {
-                                $scope.bairrosSelection.push(labelObject);
-                                $scope.localidade.bairros.push(wrappedObject);
-                            }
-                        });
-                        self.original.bairros = $scope.localidade.bairros;
-                    }
-                    return labelObject;
-                });
-            });
         };
         var errorCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The localidade could not be found.'});
             $location.path("/Localidades");
         };
         LocalidadeResource.get({LocalidadeId:$routeParams.LocalidadeId}, successCallback, errorCallback);
@@ -43,11 +23,15 @@ angular.module('lumi').controller('EditLocalidadeController', function($scope, $
 
     $scope.save = function() {
         var successCallback = function(){
+            flash.setMessage({'type':'success','text':'The localidade was updated successfully.'}, true);
             $scope.get();
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         $scope.localidade.$update(successCallback, errorCallback);
     };
@@ -58,11 +42,15 @@ angular.module('lumi').controller('EditLocalidadeController', function($scope, $
 
     $scope.remove = function() {
         var successCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The localidade was deleted.'});
             $location.path("/Localidades");
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         }; 
         $scope.localidade.$remove(successCallback, errorCallback);
     };
@@ -355,17 +343,6 @@ angular.module('lumi').controller('EditLocalidadeController', function($scope, $
         "ZAMBIA",  
         "ZIMBABUE"  
     ];
-    $scope.bairrosSelection = $scope.bairrosSelection || [];
-    $scope.$watch("bairrosSelection", function(selection) {
-        if (typeof selection != 'undefined' && $scope.localidade) {
-            $scope.localidade.bairros = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.localidade.bairros.push(collectionItem);
-            });
-        }
-    });
     
     $scope.get();
 });

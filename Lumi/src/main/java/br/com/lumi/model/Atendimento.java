@@ -1,27 +1,27 @@
 package br.com.lumi.model;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import java.util.Date;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import br.lumi.server.enuns.ESituacaoAtendimento;
-import javax.persistence.Enumerated;
-import br.com.lumi.model.Cliente;
-import javax.persistence.ManyToOne;
-import java.util.Set;
-import java.util.HashSet;
-import javax.persistence.OneToMany;
-import br.com.lumi.model.Procedimento;
-import br.com.lumi.model.Esteticista;
 @Entity
 @Table(name = Atendimento.TABELA)
+@XmlRootElement
 public class Atendimento implements Serializable {
 
 	static final String TABELA = "atendimento";
@@ -30,6 +30,7 @@ public class Atendimento implements Serializable {
 	private static final String ATRIBUTO_DATA = "data";
 	private static final String ATRIBUTO_HORA_INICIO = "hora_inicio";
 	private static final String ATRIBUTO_HORA_FIM = "hora_fim";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = ATRIBUTO_ID, updatable = false, nullable = false)

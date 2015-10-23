@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('EditLogradouroController', function($scope, $routeParams, $location, LogradouroResource , BairroResource, ClienteResource) {
+angular.module('lumi').controller('EditLogradouroController', function($scope, $routeParams, $location, flash, LogradouroResource , BairroResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -26,29 +26,9 @@ angular.module('lumi').controller('EditLogradouroController', function($scope, $
                     return labelObject;
                 });
             });
-            ClienteResource.queryAll(function(items) {
-                $scope.clienteSelectionList = $.map(items, function(item) {
-                    var wrappedObject = {
-                        id : item.id
-                    };
-                    var labelObject = {
-                        value : item.id,
-                        text : item.id
-                    };
-                    if($scope.logradouro.cliente){
-                        $.each($scope.logradouro.cliente, function(idx, element) {
-                            if(item.id == element.id) {
-                                $scope.clienteSelection.push(labelObject);
-                                $scope.logradouro.cliente.push(wrappedObject);
-                            }
-                        });
-                        self.original.cliente = $scope.logradouro.cliente;
-                    }
-                    return labelObject;
-                });
-            });
         };
         var errorCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The logradouro could not be found.'});
             $location.path("/Logradouros");
         };
         LogradouroResource.get({LogradouroId:$routeParams.LogradouroId}, successCallback, errorCallback);
@@ -60,11 +40,15 @@ angular.module('lumi').controller('EditLogradouroController', function($scope, $
 
     $scope.save = function() {
         var successCallback = function(){
+            flash.setMessage({'type':'success','text':'The logradouro was updated successfully.'}, true);
             $scope.get();
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         $scope.logradouro.$update(successCallback, errorCallback);
     };
@@ -75,11 +59,15 @@ angular.module('lumi').controller('EditLogradouroController', function($scope, $
 
     $scope.remove = function() {
         var successCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The logradouro was deleted.'});
             $location.path("/Logradouros");
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         }; 
         $scope.logradouro.$remove(successCallback, errorCallback);
     };
@@ -88,17 +76,6 @@ angular.module('lumi').controller('EditLogradouroController', function($scope, $
         if (typeof selection != 'undefined') {
             $scope.logradouro.bairro = {};
             $scope.logradouro.bairro.id = selection.value;
-        }
-    });
-    $scope.clienteSelection = $scope.clienteSelection || [];
-    $scope.$watch("clienteSelection", function(selection) {
-        if (typeof selection != 'undefined' && $scope.logradouro) {
-            $scope.logradouro.cliente = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.logradouro.cliente.push(collectionItem);
-            });
         }
     });
     

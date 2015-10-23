@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('SearchEsteticistaController', function($scope, $http, EsteticistaResource ) {
+angular.module('lumi').controller('SearchEsteticistaController', function($scope, $http, $filter, EsteticistaResource ) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -28,7 +28,8 @@ angular.module('lumi').controller('SearchEsteticistaController', function($scope
 
     $scope.performSearch = function() {
         $scope.searchResults = EsteticistaResource.queryAll(function(){
-            $scope.numberOfPages();
+            $scope.filteredResults = $filter('searchFilter')($scope.searchResults, $scope);
+            $scope.currentPage = 0;
         });
     };
     

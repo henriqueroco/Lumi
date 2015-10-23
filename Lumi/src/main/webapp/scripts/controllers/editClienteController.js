@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('EditClienteController', function($scope, $routeParams, $location, ClienteResource , LogradouroResource) {
+angular.module('lumi').controller('EditClienteController', function($scope, $routeParams, $location, flash, ClienteResource , LogradouroResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -28,6 +28,7 @@ angular.module('lumi').controller('EditClienteController', function($scope, $rou
             });
         };
         var errorCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The cliente could not be found.'});
             $location.path("/Clientes");
         };
         ClienteResource.get({ClienteId:$routeParams.ClienteId}, successCallback, errorCallback);
@@ -39,11 +40,15 @@ angular.module('lumi').controller('EditClienteController', function($scope, $rou
 
     $scope.save = function() {
         var successCallback = function(){
+            flash.setMessage({'type':'success','text':'The cliente was updated successfully.'}, true);
             $scope.get();
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         };
         $scope.cliente.$update(successCallback, errorCallback);
     };
@@ -54,11 +59,15 @@ angular.module('lumi').controller('EditClienteController', function($scope, $rou
 
     $scope.remove = function() {
         var successCallback = function() {
+            flash.setMessage({'type': 'error', 'text': 'The cliente was deleted.'});
             $location.path("/Clientes");
-            $scope.displayError = false;
         };
-        var errorCallback = function() {
-            $scope.displayError=true;
+        var errorCallback = function(response) {
+            if(response && response.data && response.data.message) {
+                flash.setMessage({'type': 'error', 'text': response.data.message}, true);
+            } else {
+                flash.setMessage({'type': 'error', 'text': 'Something broke. Retry, or cancel and start afresh.'}, true);
+            }
         }; 
         $scope.cliente.$remove(successCallback, errorCallback);
     };
