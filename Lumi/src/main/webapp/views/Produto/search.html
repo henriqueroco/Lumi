@@ -10,7 +10,7 @@
 <div>
     <h3>Procurar por Produtos</h3>
     <form id="ProdutoSearch" class="form-horizontal">
-        
+    
 
     <div class="form-group">
         <label for="descricao" class="col-sm-2 control-label">Descricao</label>
@@ -20,77 +20,16 @@
     </div>
 
     <div class="form-group">
-        <label for="descricaoMarca" class="col-sm-2 control-label">Descricao Marca</label>
+        <label for="descricaoMarca" class="col-sm-2 control-label">Marca</label>
         <div class="col-sm-10">
             <input id="descricaoMarca" name="descricaoMarca" class="form-control" type="text" ng-model="search.descricaoMarca" placeholder="Enter the Produto Descricao Marca"></input>
         </div>
     </div>
-
     <div class="form-group">
-        <label for="tipoEmbalagem" class="col-sm-2 control-label">Tipo Embalagem</label>
-        <div class="col-sm-10">
-            <select id="tipoEmbalagem" name="tipoEmbalagem" class="form-control" ng-model="search.tipoEmbalagem" ng-options="t as t for t in tipoEmbalagemList">
-                <option value="">Escolha um(a) Tipo Embalagem</option>
-            </select>
+        <div class="col-md-offset-2 col-sm-10">
+            <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Procurar</a>
         </div>
     </div>
-
-    <div class="form-group">
-        <label for="quantidadeEmbalagem" class="col-sm-2 control-label">Quantidade Embalagem</label>
-        <div class="col-sm-10">
-            <input id="quantidadeEmbalagem" name="quantidadeEmbalagem" class="form-control" type="text" ng-model="search.quantidadeEmbalagem" placeholder="Enter the Produto Quantidade Embalagem"></input>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="unidadeMedidaEmbalagem" class="col-sm-2 control-label">Unidade Medida Embalagem</label>
-        <div class="col-sm-10">
-            <select id="unidadeMedidaEmbalagem" name="unidadeMedidaEmbalagem" class="form-control" ng-model="search.unidadeMedidaEmbalagem" ng-options="u as u for u in unidadeMedidaEmbalagemList">
-                <option value="">Escolha um(a) Unidade Medida Embalagem</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="formaUtilizacao" class="col-sm-2 control-label">Forma Utilizacao</label>
-        <div class="col-sm-10">
-            <select id="formaUtilizacao" name="formaUtilizacao" class="form-control" ng-model="search.formaUtilizacao" ng-options="f as f for f in formaUtilizacaoList">
-                <option value="">Escolha um(a) Forma Utilizacao</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="unidadeMedidaUtilizacao" class="col-sm-2 control-label">Unidade Medida Utilizacao</label>
-        <div class="col-sm-10">
-            <select id="unidadeMedidaUtilizacao" name="unidadeMedidaUtilizacao" class="form-control" ng-model="search.unidadeMedidaUtilizacao" ng-options="u as u for u in unidadeMedidaUtilizacaoList">
-                <option value="">Escolha um(a) Unidade Medida Utilizacao</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="pontos" class="col-sm-2 control-label">Pontos</label>
-        <div class="col-sm-10">
-            <input id="pontos" name="pontos" class="form-control" type="text" ng-model="search.pontos" placeholder="Enter the Produto Pontos"></input>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="situacao" class="col-sm-2 control-label">Situacao</label>
-        <div class="col-sm-10">
-            <select id="situacao" name="situacao" class="form-control" ng-model="search.situacao" ng-options="s as s for s in situacaoList">
-                <option value="">Escolha um(a) Situacao</option>
-            </select>
-        </div>
-    </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-sm-10">
-                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Procurar</a>
-            </div>
-        </div>
     </form>
 </div>
 <div id="search-results">

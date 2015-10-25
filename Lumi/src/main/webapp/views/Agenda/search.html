@@ -8,8 +8,8 @@
 </div>
 <hr/>
 <div>
-    <h3>Procurar por Atendimentos</h3>
-    <form id="AtendimentoSearch" class="form-horizontal">
+    <h3>Procurar por "Informe o(a)s</h3>
+    <form id=""Informe o(a)Search" class="form-horizontal">
         
 
 
@@ -48,10 +48,10 @@
             </thead>
             <tbody id="search-results-body">
                 <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
-                    <td><a href="#/Atendimentos/edit/{{result.id}}">{{result.data| date:'mediumDate'}}</a></td>
-                    <td><a href="#/Atendimentos/edit/{{result.id}}">{{result.horaInicio| date:'mediumTime'}}</a></td>
-                    <td><a href="#/Atendimentos/edit/{{result.id}}">{{result.horaFim| date:'mediumTime'}}</a></td>
-                    <td><a href="#/Atendimentos/edit/{{result.id}}">{{result.situacao}}</a></td>
+                    <td><a href="#/"Informe o(a)s/edit/{{result.id}}">{{result.data| date:'mediumDate'}}</a></td>
+                    <td><a href="#/"Informe o(a)s/edit/{{result.id}}">{{result.horaInicio| date:'mediumTime'}}</a></td>
+                    <td><a href="#/"Informe o(a)s/edit/{{result.id}}">{{result.horaFim| date:'mediumTime'}}</a></td>
+                    <td><a href="#/"Informe o(a)s/edit/{{result.id}}">{{result.situacao}}</a></td>
                 </tr>
             </tbody>
         </table>

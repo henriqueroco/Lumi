@@ -1321,8 +1321,8 @@
 					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
-					<logical_name>id_atendimento</logical_name>
-					<physical_name>id_atendimento</physical_name>
+					<logical_name>id_"Informe o(a)</logical_name>
+					<physical_name>id_"Informe o(a)</physical_name>
 					<type>integer</type>
 					<constraint></constraint>
 					<default_value></default_value>
@@ -2297,8 +2297,8 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>atendimento</physical_name>
-			<logical_name>atendimento</logical_name>
+			<physical_name>"Informe o(a)</physical_name>
+			<logical_name>"Informe o(a)</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
