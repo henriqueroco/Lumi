@@ -12,11 +12,11 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
             ClienteResource.queryAll(function(items) {
                 $scope.clienteSelectionList = $.map(items, function(item) {
                     var wrappedObject = {
-                        id : item.id
+                        id : item.nome
                     };
                     var labelObject = {
-                        value : item.id,
-                        text : item.id
+                        value : item.nome,
+                        text : item.nome
                     };
                     if($scope.atendimento.cliente){
                         $.each($scope.atendimento.cliente, function(idx, element) {
@@ -33,11 +33,11 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
             ProcedimentoResource.queryAll(function(items) {
                 $scope.procedimentoSelectionList = $.map(items, function(item) {
                     var wrappedObject = {
-                        id : item.id
+                        id : item.nome
                     };
                     var labelObject = {
-                        value : item.id,
-                        text : item.id
+                        value : item.nome,
+                        text : item.nome
                     };
                     if($scope.atendimento.procedimento){
                         $.each($scope.atendimento.procedimento, function(idx, element) {
@@ -54,11 +54,11 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
             EsteticistaResource.queryAll(function(items) {
                 $scope.esteticistaSelectionList = $.map(items, function(item) {
                     var wrappedObject = {
-                        id : item.id
+                        id : item.nome
                     };
                     var labelObject = {
-                        value : item.id,
-                        text : item.id
+                        value : item.nome,
+                        text : item.nome
                     };
                     if($scope.atendimento.esteticista){
                         $.each($scope.atendimento.esteticista, function(idx, element) {

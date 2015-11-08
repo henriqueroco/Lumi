@@ -28,9 +28,9 @@ html, body {
 }
 
 #footer {
-    background-color: #F5F5F5;
+    background-color: #F7DDDC;
     text-align: center;
-    border-top: 1px solid #E5E5E5;
+    border-top: 1px solid rgba(227, 129, 228, 0);
 }
 
 h2 i.icon-check {

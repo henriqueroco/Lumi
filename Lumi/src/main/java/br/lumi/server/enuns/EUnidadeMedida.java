@@ -2,10 +2,12 @@ package br.lumi.server.enuns;
 
 public enum EUnidadeMedida {
 
-
-	UND("Unidade"),
 	KG("Quilos"),
+	G("Gramas"),
+	MG("Miligramas"),
+	UND("Unidade"),
 	L("Litros"),
+	ML("Mililitros"),
 	;
 
 	private String unidadeMedida;

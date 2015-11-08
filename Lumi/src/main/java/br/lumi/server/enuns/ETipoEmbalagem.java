@@ -1,10 +1,12 @@
 package br.lumi.server.enuns;
 
 public enum ETipoEmbalagem {
-
+	
+	AMPOLA("Ampola"),
+	BISNAGA("Bisnaga"),
+	CAIXA("Caixa"),
 	POTE("Pote"),
 	UNIDADE("Unidade"),
-	BISNAGA("Bisnaga"),
 	;
 
 	private String tipo;

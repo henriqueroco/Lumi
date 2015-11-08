@@ -1,99 +1,149 @@
 <header ng-switch on="$location.path().indexOf('/Produtos/new') > -1">
-    <h3 ng-switch-when="true">Criar um(a) novo(a)Produto</h3>
-    <h3 ng-switch-when="false">Visualizar ou editar um(a) Produto</h3>
+	<h3 ng-switch-when="true">Cadastrar produto</h3>
+	<h3 ng-switch-when="false">Visualizar ou editar um produto</h3>
 </header>
-<form id="ProdutoForm" name="ProdutoForm" class="form-horizontal" role="form">
-    
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.descricao.$invalid}">
-        <label for="descricao" class="col-sm-2 control-label">Descricao</label>
-        <div id="descricaoControls" class="col-sm-10">
-            <input id="descricao" name="descricao" type="text" required ng-maxlength="50" class="form-control" ng-model="produto.descricao" placeholder="Enter the Produto Descricao"></input>
-            <span class="help-block error" ng-show="ProdutoForm.descricao.$error.required">obrigatorio</span> 
-            <span class="help-block error" ng-show="ProdutoForm.descricao.$error.maxlength">maximum length is 50</span>
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.descricaoMarca.$invalid}">
-        <label for="descricaoMarca" class="col-sm-2 control-label">Descricao Marca</label>
-        <div id="descricaoMarcaControls" class="col-sm-10">
-            <input id="descricaoMarca" name="descricaoMarca" type="text" required ng-maxlength="50" class="form-control" ng-model="produto.descricaoMarca" placeholder="Enter the Produto Descricao Marca"></input>
-            <span class="help-block error" ng-show="ProdutoForm.descricaoMarca.$error.required">obrigatorio</span> 
-            <span class="help-block error" ng-show="ProdutoForm.descricaoMarca.$error.maxlength">maximum length is 50</span>
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.tipoEmbalagem.$invalid}">
-        <label for="tipoEmbalagem" class="col-sm-2 control-label">Tipo Embalagem</label>
-        <div id="tipoEmbalagemControls" class="col-sm-10">
-        <select id="tipoEmbalagem" name="tipoEmbalagem" class="form-control" ng-model="produto.tipoEmbalagem" ng-options="t for t in tipoEmbalagemList" required >
-            <option value="">Escolha um(a) Tipo Embalagem</option>
-        </select>
-        <span class="help-block error" ng-show="ProdutoForm.tipoEmbalagem.$error.required">obrigatorio</span> 
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.quantidadeEmbalagem.$invalid}">
-        <label for="quantidadeEmbalagem" class="col-sm-2 control-label">Quantidade Embalagem</label>
-        <div id="quantidadeEmbalagemControls" class="col-sm-10">
-            <input id="quantidadeEmbalagem" name="quantidadeEmbalagem" type="text" required class="form-control" ng-model="produto.quantidadeEmbalagem" placeholder="Enter the Produto Quantidade Embalagem"></input>
-            <span class="help-block error" ng-show="ProdutoForm.quantidadeEmbalagem.$error.required">obrigatorio</span> 
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.unidadeMedidaEmbalagem.$invalid}">
-        <label for="unidadeMedidaEmbalagem" class="col-sm-2 control-label">Unidade Medida Embalagem</label>
-        <div id="unidadeMedidaEmbalagemControls" class="col-sm-10">
-        <select id="unidadeMedidaEmbalagem" name="unidadeMedidaEmbalagem" class="form-control" ng-model="produto.unidadeMedidaEmbalagem" ng-options="u for u in unidadeMedidaEmbalagemList" required >
-            <option value="">Escolha um(a) Unidade Medida Embalagem</option>
-        </select>
-        <span class="help-block error" ng-show="ProdutoForm.unidadeMedidaEmbalagem.$error.required">obrigatorio</span> 
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.formaUtilizacao.$invalid}">
-        <label for="formaUtilizacao" class="col-sm-2 control-label">Forma Utilizacao</label>
-        <div id="formaUtilizacaoControls" class="col-sm-10">
-        <select id="formaUtilizacao" name="formaUtilizacao" class="form-control" ng-model="produto.formaUtilizacao" ng-options="f for f in formaUtilizacaoList" required >
-            <option value="">Escolha um(a) Forma Utilizacao</option>
-        </select>
-        <span class="help-block error" ng-show="ProdutoForm.formaUtilizacao.$error.required">obrigatorio</span> 
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.unidadeMedidaUtilizacao.$invalid}">
-        <label for="unidadeMedidaUtilizacao" class="col-sm-2 control-label">Unidade Medida Utilizacao</label>
-        <div id="unidadeMedidaUtilizacaoControls" class="col-sm-10">
-        <select id="unidadeMedidaUtilizacao" name="unidadeMedidaUtilizacao" class="form-control" ng-model="produto.unidadeMedidaUtilizacao" ng-options="u for u in unidadeMedidaUtilizacaoList"  >
-            <option value="">Escolha um(a) Unidade Medida Utilizacao</option>
-        </select>
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.pontos.$invalid}">
-        <label for="pontos" class="col-sm-2 control-label">Pontos</label>
-        <div id="pontosControls" class="col-sm-10">
-            <input id="pontos" name="pontos" type="text" required class="form-control" ng-model="produto.pontos" placeholder="Enter the Produto Pontos"></input>
-            <span class="help-block error" ng-show="ProdutoForm.pontos.$error.required">obrigatorio</span> 
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': ProdutoForm.situacao.$invalid}">
-        <label for="situacao" class="col-sm-2 control-label">Situacao</label>
-        <div id="situacaoControls" class="col-sm-10">
-        <select id="situacao" name="situacao" class="form-control" ng-model="produto.situacao" ng-options="s for s in situacaoList" required >
-            <option value="">Escolha um(a) Situacao</option>
-        </select>
-        <span class="help-block error" ng-show="ProdutoForm.situacao.$error.required">obrigatorio</span> 
-        </div>
-    </div>
+<form id="ProdutoForm" name="ProdutoForm" class="form-horizontal"
+	role="form">
 
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button id="saveProduto" name="saveProduto" class="btn btn-primary" ng-disabled="isClean() || ProdutoForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Salvar</button>
-            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</button>
-            <button id="deleteProduto" name="deleteProduto" class="btn btn-danger" ng-show="produto.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Deletar</button>
-        </div>
-    </div>
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.descricao.$invalid}">
+		<label for="descricao" class="col-sm-2 control-label">Descricao</label>
+		<div id="descricaoControls" class="col-sm-10">
+			<input id="descricao" name="descricao" type="text" required
+				ng-maxlength="50" class="form-control" ng-model="produto.descricao"
+				placeholder="Informe a descricao do produto"></input> <span
+				class="help-block error"
+				ng-show="ProdutoForm.descricao.$error.required">Obrigatorio</span> <span
+				class="help-block error"
+				ng-show="ProdutoForm.descricao.$error.maxlength">Tamanho máximo de 50 caracteres</span>
+		</div>
+	</div>
+
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.descricaoMarca.$invalid}">
+		<label for="descricaoMarca" class="col-sm-2 control-label">Marca</label>
+		<div id="descricaoMarcaControls" class="col-sm-10">
+			<input id="descricaoMarca" name="descricaoMarca" type="text" required
+				ng-maxlength="50" class="form-control"
+				ng-model="produto.descricaoMarca"
+				placeholder="Informe a descricao da marca do produto"></input> <span
+				class="help-block error"
+				ng-show="ProdutoForm.descricaoMarca.$error.required">Obrigatorio</span>
+			<span class="help-block error"
+				ng-show="ProdutoForm.descricaoMarca.$error.maxlength">Tamanho máximo de 50 caracteres</span>
+		</div>
+	</div>
+
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.tipoEmbalagem.$invalid}">
+		<label for="tipoEmbalagem" class="col-sm-2 control-label">Tipo
+			Embalagem</label>
+		<div id="tipoEmbalagemControls" class="col-sm-10">
+			<select id="tipoEmbalagem" name="tipoEmbalagem" class="form-control"
+				ng-model="produto.tipoEmbalagem"
+				ng-options="t for t in tipoEmbalagemList" required>
+				<option value="">Escolha um tipo de embalagem</option>
+			</select> <span class="help-block error"
+				ng-show="ProdutoForm.tipoEmbalagem.$error.required">Obrigatorio</span>
+		</div>
+	</div>
+
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.quantidadeEmbalagem.$invalid}">
+		<label for="quantidadeEmbalagem" class="col-sm-2 control-label">Quantidade
+			da embalagem</label>
+		<div id="quantidadeEmbalagemControls" class="col-sm-10">
+			<input id="quantidadeEmbalagem" name="quantidadeEmbalagem"
+				type="text" required class="form-control"
+				ng-model="produto.quantidadeEmbalagem"
+				placeholder="Informe a quantidade que contem a embalagem"></input> <span
+				class="help-block error"
+				ng-show="ProdutoForm.quantidadeEmbalagem.$error.required">Obrigatorio</span>
+		</div>
+	</div>
+
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.unidadeMedidaEmbalagem.$invalid}">
+		<label for="unidadeMedidaEmbalagem" class="col-sm-2 control-label">Unidade de
+			medida da embalagem</label>
+		<div id="unidadeMedidaEmbalagemControls" class="col-sm-10">
+			<select id="unidadeMedidaEmbalagem" name="unidadeMedidaEmbalagem"
+				class="form-control" ng-model="produto.unidadeMedidaEmbalagem"
+				ng-options="u for u in unidadeMedidaEmbalagemList" required>
+				<option value="">Escolha uma unidade de medida da embalagem</option>
+			</select> <span class="help-block error"
+				ng-show="ProdutoForm.unidadeMedidaEmbalagem.$error.required">Obrigatorio</span>
+		</div>
+	</div>
+
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.formaUtilizacao.$invalid}">
+		<label for="formaUtilizacao" class="col-sm-2 control-label">Forma de
+			utilizacao</label>
+		<div id="formaUtilizacaoControls" class="col-sm-10">
+			<select id="formaUtilizacao" name="formaUtilizacao"
+				class="form-control" ng-model="produto.formaUtilizacao"
+				ng-options="f for f in formaUtilizacaoList" required>
+				<option value="">Escolha a forma de utilizacao do produto</option>
+			</select> <span class="help-block error"
+				ng-show="ProdutoForm.formaUtilizacao.$error.required">Obrigatorio</span>
+		</div>
+	</div>
+
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.unidadeMedidaUtilizacao.$invalid}">
+		<label for="unidadeMedidaUtilizacao" class="col-sm-2 control-label">Unidade de
+			medida a ser utilizado o produto</label>
+		<div id="unidadeMedidaUtilizacaoControls" class="col-sm-10">
+			<select id="unidadeMedidaUtilizacao" name="unidadeMedidaUtilizacao"
+				class="form-control" ng-model="produto.unidadeMedidaUtilizacao"
+				ng-options="u for u in unidadeMedidaUtilizacaoList">
+				<option value="">Escolha a unidade de medida de utilizacao</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.pontos.$invalid}">
+		<label for="pontos" class="col-sm-2 control-label">Pontos</label>
+		<div id="pontosControls" class="col-sm-10">
+			<input id="pontos" name="pontos" type="text" required
+				class="form-control" ng-model="produto.pontos"
+				placeholder="Informa a pontuacao do produto"></input> <span
+				class="help-block error"
+				ng-show="ProdutoForm.pontos.$error.required">Obrigatorio</span>
+		</div>
+	</div>
+
+	<div class="form-group"
+		ng-class="{'has-error': ProdutoForm.situacao.$invalid}">
+		<label for="situacao" class="col-sm-2 control-label">Situacao</label>
+		<div id="situacaoControls" class="col-sm-10">
+			<select id="situacao" name="situacao" class="form-control"
+				ng-model="produto.situacao" ng-options="s for s in situacaoList"
+				required>
+				<option value="">Escolha uma situacao</option>
+			</select> <span class="help-block error"
+				ng-show="ProdutoForm.situacao.$error.required">Obrigatorio</span>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button id="saveProduto" name="saveProduto" class="btn btn-primary"
+				ng-disabled="isClean() || ProdutoForm.$invalid" ng-click="save()">
+				<span class="glyphicon glyphicon-ok-sign"></span> Salvar
+			</button>
+			<button id="cancel" name="cancel" class="btn btn-default"
+				ng-click="cancel()">
+				<span class="glyphicon glyphicon-remove-sign"></span> Cancelar
+			</button>
+			<button id="deleteProduto" name="deleteProduto"
+				class="btn btn-danger" ng-show="produto.id" ng-click="remove()">
+				<span class="glyphicon glyphicon-trash"></span> Deletar
+			</button>
+		</div>
+	</div>
 </form>

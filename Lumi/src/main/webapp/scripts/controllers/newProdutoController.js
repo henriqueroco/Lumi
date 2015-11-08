@@ -5,15 +5,20 @@ angular.module('lumi').controller('NewProdutoController', function ($scope, $loc
     $scope.produto = $scope.produto || {};
     
     $scope.tipoEmbalagemList = [
+        "AMPOLA",
+        "BISNAGA",
+        "CAIXA",
         "POTE",
-        "UNIDADE",
-        "BISNAGA"
+        "UNIDADE"
     ];
     
     $scope.unidadeMedidaEmbalagemList = [
-        "UND",
         "KG",
-        "L"
+        "G",
+        "MG",
+        "UND",
+        "L",
+        "ML"
     ];
     
     $scope.formaUtilizacaoList = [
@@ -22,9 +27,12 @@ angular.module('lumi').controller('NewProdutoController', function ($scope, $loc
     ];
     
     $scope.unidadeMedidaUtilizacaoList = [
-        "UND",
         "KG",
-        "L"
+        "G",
+        "MG",
+        "UND",
+        "L",
+        "ML"
     ];
     
     $scope.situacaoList = [

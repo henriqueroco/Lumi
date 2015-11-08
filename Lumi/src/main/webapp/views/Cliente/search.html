@@ -1,10 +1,9 @@
 <div class="form-horizontal">
-	<h3>Criar um(a) novo(a)Cliente</h3>
 	<div class="form-group">
 		<div class="col-md-offset-2 col-sm-2">
 			<a id="Create" name="Create" class="btn btn-primary"
 				href="#/Clientes/new"><span
-				class="glyphicon glyphicon-plus-sign"></span> Novo</a>
+				class="glyphicon glyphicon-plus-sign"></span> Cadastrar Cliente</a>
 		</div>
 	</div>
 </div>
@@ -46,31 +45,23 @@
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th>Cpf</th>
-					<th>Data Nascimento</th>
+					<th>Data Nasc.</th>
 					<th>Sexo</th>
 					<th>Celular</th>
-					<th>Telefone</th>
-					<th>Contato Emergencia</th>
-					<th>Telefone Emergencia</th>
+					<th>Tel Emergencia</th>
 					<th>Situacao</th>
-					<th>Logradouro</th>
 				</tr>
 			</thead>
 			<tbody id="search-results-body">
 				<tr
 					ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
 					<td><a href="#/Clientes/edit/{{result.id}}">{{result.nome}}</a></td>
-					<td><a href="#/Clientes/edit/{{result.id}}">{{result.cpf}}</a></td>
 					<td><a href="#/Clientes/edit/{{result.id}}">{{result.dataNascimento|
 							date:'mediumDate'}}</a></td>
 					<td><a href="#/Clientes/edit/{{result.id}}">{{result.sexo}}</a></td>
 					<td><a href="#/Clientes/edit/{{result.id}}">{{result.celular}}</a></td>
-					<td><a href="#/Clientes/edit/{{result.id}}">{{result.telefone}}</a></td>
-					<td><a href="#/Clientes/edit/{{result.id}}">{{result.contatoEmergencia}}</a></td>
 					<td><a href="#/Clientes/edit/{{result.id}}">{{result.telefoneEmergencia}}</a></td>
 					<td><a href="#/Clientes/edit/{{result.id}}">{{result.situacao}}</a></td>
-					<td><a href="#/Clientes/edit/{{result.id}}">{{result.logradouro.id}}</a></td>
 				</tr>
 			</tbody>
 		</table>

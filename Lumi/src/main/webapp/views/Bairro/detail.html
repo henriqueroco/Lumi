@@ -1,34 +1,49 @@
 <header ng-switch on="$location.path().indexOf('/Bairros/new') > -1">
-    <h3 ng-switch-when="true">Criar um novo Bairro</h3>
-    <h3 ng-switch-when="false">Visualizar ou editar um Bairro</h3>
+	<h3 ng-switch-when="true">Cadastrar bairro</h3>
+	<h3 ng-switch-when="false">Visualizar ou editar um bairro</h3>
 </header>
-<form id="BairroForm" name="BairroForm" class="form-horizontal" role="form">
-    
-
-    <div class="form-group" ng-class="{'has-error': BairroForm.descricaoBairro.$invalid}">
-        <label for="descricaoBairro" class="col-sm-2 control-label">Descricao Bairro</label>
-        <div id="descricaoBairroControls" class="col-sm-10">
-            <input id="descricaoBairro" name="descricaoBairro" type="text" Campo obrigatorio ng-maxlength="100" class="form-control" ng-model="bairro.descricaoBairro" placeholder="Enter the Bairro Descricao Bairro"></input>
-            <span class="help-block error" ng-show="BairroForm.descricaoBairro.$error.Campo obrigatorio">Campo obrigatorio</span> 
-            <span class="help-block error" ng-show="BairroForm.descricaoBairro.$error.maxlength">Tamanho maximo - 100</span>
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': BairroForm.localidade.$invalid}">
-        <label for="localidade" class="col-sm-2 control-label">Localidade</label>
-        <div id="localidadeControls" class="col-sm-10">
-        <select id="localidade" name="localidade" class="form-control" ng-model="localidadeSelection" ng-options="l.text for l in localidadeSelectionList"  >
-            <option value="">Escolha um(a) Localidade</option>
-        </select>
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button id="saveBairro" name="saveBairro" class="btn btn-primary" ng-disabled="isClean() || BairroForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Salvar</button>
-            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</button>
-            <button id="deleteBairro" name="deleteBairro" class="btn btn-danger" ng-show="bairro.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Deletar</button>
-        </div>
-    </div>
+<form id="BairroForm" name="BairroForm" class="form-horizontal"
+	role="form">
+	<div class="form-group"
+		ng-class="{'has-error': BairroForm.descricaoBairro.$invalid}">
+		<label for="descricaoBairro" class="col-sm-2 control-label">Descricao
+			bairro</label>
+		<div id="descricaoBairroControls" class="col-sm-10">
+			<input id="descricaoBairro" name="descricaoBairro" type="text" Campo
+				obrigatorio ng-maxlength="100" class="form-control"
+				ng-model="bairro.descricaoBairro"
+				placeholder="Informe a descricao do bairro"></input> <span
+				class="help-block error"
+				ng-show="BairroForm.descricaoBairro.$error.Campo obrigatorio">Obrigatorio</span>
+			<span class="help-block error"
+				ng-show="BairroForm.descricaoBairro.$error.maxlength">Tamanho máximo de 100 caracteres</span>
+		</div>
+	</div>
+	<div class="form-group"
+		ng-class="{'has-error': BairroForm.localidade.$invalid}">
+		<label for="localidade" class="col-sm-2 control-label">Localidade</label>
+		<div id="localidadeControls" class="col-sm-10">
+			<select id="localidade" name="localidade" class="form-control"
+				ng-model="localidadeSelection"
+				ng-options="l.text for l.nomeCidade in localidadeSelectionList">
+				<option value="">Escolha uma localidade</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button id="saveBairro" name="saveBairro" class="btn btn-primary"
+				ng-disabled="isClean() || BairroForm.$invalid" ng-click="save()">
+				<span class="glyphicon glyphicon-ok-sign"></span> Salvar
+			</button>
+			<button id="cancel" name="cancel" class="btn btn-default"
+				ng-click="cancel()">
+				<span class="glyphicon glyphicon-remove-sign"></span> Cancelar
+			</button>
+			<button id="deleteBairro" name="deleteBairro" class="btn btn-danger"
+				ng-show="bairro.id" ng-click="remove()">
+				<span class="glyphicon glyphicon-trash"></span> Deletar
+			</button>
+		</div>
+	</div>
 </form>
