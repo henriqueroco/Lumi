@@ -16,7 +16,7 @@
 				ng-model="localidade.nomeCidade"
 				placeholder="Informe o nome da cidade/localidade"></input> <span
 				class="help-block error"
-				ng-show="LocalidadeForm.nomeCidade.$error.required">Obrigatorio</span>
+				ng-show="LocalidadeForm.nomeCidade.$error.required"></span>
 			<span class="help-block error"
 				ng-show="LocalidadeForm.nomeCidade.$error.maxlength">Tamanho máximo de 100 caracteres</span>
 		</div>
@@ -30,7 +30,7 @@
 				ng-model="localidade.uf" ng-options="u for u in ufList" required>
 				<option value="">Escolha o estado</option>
 			</select> <span class="help-block error"
-				ng-show="LocalidadeForm.uf.$error.required">Obrigatorio</span>
+				ng-show="LocalidadeForm.uf.$error.required"></span>
 		</div>
 	</div>
 
@@ -42,7 +42,7 @@
 				ng-model="localidade.pais" ng-options="p for p in paisList" required>
 				<option value="">Escolha o pais</option>
 			</select> <span class="help-block error"
-				ng-show="LocalidadeForm.pais.$error.required">Obrigatorio</span>
+				ng-show="LocalidadeForm.pais.$error.required"></span>
 		</div>
 	</div>
 

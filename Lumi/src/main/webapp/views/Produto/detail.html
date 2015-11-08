@@ -14,7 +14,7 @@
 				ng-maxlength="50" class="form-control" ng-model="produto.descricao"
 				placeholder="Informe a descricao do produto"></input> <span
 				class="help-block error"
-				ng-show="ProdutoForm.descricao.$error.required">Obrigatorio</span> <span
+				ng-show="ProdutoForm.descricao.$error.required"></span> <span
 				class="help-block error"
 				ng-show="ProdutoForm.descricao.$error.maxlength">Tamanho máximo de 50 caracteres</span>
 		</div>
@@ -29,7 +29,7 @@
 				ng-model="produto.descricaoMarca"
 				placeholder="Informe a descricao da marca do produto"></input> <span
 				class="help-block error"
-				ng-show="ProdutoForm.descricaoMarca.$error.required">Obrigatorio</span>
+				ng-show="ProdutoForm.descricaoMarca.$error.required"></span>
 			<span class="help-block error"
 				ng-show="ProdutoForm.descricaoMarca.$error.maxlength">Tamanho máximo de 50 caracteres</span>
 		</div>
@@ -45,7 +45,7 @@
 				ng-options="t for t in tipoEmbalagemList" required>
 				<option value="">Escolha um tipo de embalagem</option>
 			</select> <span class="help-block error"
-				ng-show="ProdutoForm.tipoEmbalagem.$error.required">Obrigatorio</span>
+				ng-show="ProdutoForm.tipoEmbalagem.$error.required"></span>
 		</div>
 	</div>
 
@@ -59,7 +59,7 @@
 				ng-model="produto.quantidadeEmbalagem"
 				placeholder="Informe a quantidade que contem a embalagem"></input> <span
 				class="help-block error"
-				ng-show="ProdutoForm.quantidadeEmbalagem.$error.required">Obrigatorio</span>
+				ng-show="ProdutoForm.quantidadeEmbalagem.$error.required"></span>
 		</div>
 	</div>
 
@@ -73,7 +73,7 @@
 				ng-options="u for u in unidadeMedidaEmbalagemList" required>
 				<option value="">Escolha uma unidade de medida da embalagem</option>
 			</select> <span class="help-block error"
-				ng-show="ProdutoForm.unidadeMedidaEmbalagem.$error.required">Obrigatorio</span>
+				ng-show="ProdutoForm.unidadeMedidaEmbalagem.$error.required"></span>
 		</div>
 	</div>
 
@@ -87,7 +87,7 @@
 				ng-options="f for f in formaUtilizacaoList" required>
 				<option value="">Escolha a forma de utilizacao do produto</option>
 			</select> <span class="help-block error"
-				ng-show="ProdutoForm.formaUtilizacao.$error.required">Obrigatorio</span>
+				ng-show="ProdutoForm.formaUtilizacao.$error.required"></span>
 		</div>
 	</div>
 
@@ -112,7 +112,7 @@
 				class="form-control" ng-model="produto.pontos"
 				placeholder="Informa a pontuacao do produto"></input> <span
 				class="help-block error"
-				ng-show="ProdutoForm.pontos.$error.required">Obrigatorio</span>
+				ng-show="ProdutoForm.pontos.$error.required"></span>
 		</div>
 	</div>
 
@@ -125,7 +125,7 @@
 				required>
 				<option value="">Escolha uma situacao</option>
 			</select> <span class="help-block error"
-				ng-show="ProdutoForm.situacao.$error.required">Obrigatorio</span>
+				ng-show="ProdutoForm.situacao.$error.required"></span>
 		</div>
 	</div>
 

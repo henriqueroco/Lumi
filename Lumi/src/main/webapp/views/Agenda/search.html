@@ -3,25 +3,6 @@
 <hr />
 <div>
 	<h3>Agenda</h3>
-<!-- 	<form id="" Informe o(a)Search" class="form-horizontal"> -->
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="situacao" class="col-sm-2 control-label">Situacao</label> -->
-<!-- 			<div class="col-sm-10"> -->
-<!-- 				<select id="situacao" name="situacao" class="form-control" -->
-<!-- 					ng-model="search.situacao" -->
-<!-- 					ng-options="s as s for s in situacaoList"> -->
-<!-- 					<option value="">Escolha uma Situacao</option> -->
-<!-- 				</select> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<div class="form-group"> -->
-<!-- 			<div class="col-md-offset-2 col-sm-10"> -->
-<!-- 				<a id="Search" name="Search" class="btn btn-primary" -->
-<!-- 					ng-click="performSearch()"><span -->
-<!-- 					class="glyphicon glyphicon-search"></span> Procurar</a> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</form> -->
 </div>
 <div id="search-results">
 	<div class="table-responsive">
@@ -32,6 +13,7 @@
 					<th>Data</th>
 					<th>Hora Inicio</th>
 					<th>Hora Fim</th>
+					<th>Cliente</th>
 					<th>Situacao</th>
 				</tr>
 			</thead>
@@ -44,6 +26,7 @@
 							date:'mediumTime'}}</a></td>
 					<td><a href="#/"Informeo(a)s/edit/{{result.id}}">{{result.horaFim|
 							date:'mediumTime'}}</a></td>
+					<td><a href="#/"Informeo(a)s/edit/{{result.id}}">{{result.cliente.nome}}</a></td>
 					<td><a href="#/"Informeo(a)s/edit/{{result.id}}">{{result.situacao}}</a></td>
 				</tr>
 			</tbody>

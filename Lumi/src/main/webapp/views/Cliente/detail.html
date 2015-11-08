@@ -11,7 +11,7 @@
 			<input id="nome" name="nome" type="text" required
 				class="form-control" ng-model="cliente.nome"
 				placeholder="Informe o nome do cliente"></input> <span
-				class="help-block error" ng-show="ClienteForm.nome.$error.required">Obrigatorio</span>
+				class="help-block error" ng-show="ClienteForm.nome.$error.required"></span>
 		</div>
 	</div>
 	<div class="form-group"
@@ -21,7 +21,7 @@
 			<input id="cpf" name="cpf" type="text" required class="form-control"
 				ng-model="cliente.cpf" placeholder="Informe o CPF do cliente"></input>
 			<span class="help-block error"
-				ng-show="ClienteForm.cpf.$error.required">Obrigatorio</span> <span
+				ng-show="ClienteForm.cpf.$error.required"></span> <span
 				class="help-block error" ng-show="ClienteForm.cpf.$error.cpfFormat">Formato
 				Cpf "999.999.999-99" (ex. 012.345.678-99)</span>
 		</div>
@@ -35,7 +35,7 @@
 				ng-model="cliente.dataNascimento"
 				placeholder="Informe a data de nascimento do cliente"></date>
 			<span class="help-block error"
-				ng-show="ClienteForm.dataNascimento.$error.required">Obrigatorio</span>
+				ng-show="ClienteForm.dataNascimento.$error.required"></span>
 			<span class="help-block error"
 				ng-show="ClienteForm.dataNascimento.$error.dateFormat">Data
 				no fromato "aaaa-MM-dd" (ex. 2015-12-01)</span>
@@ -50,7 +50,7 @@
 				ng-model="cliente.sexo" ng-options="s for s in sexoList" required>
 				<option value="">Escolha o sexo</option>
 			</select> <span class="help-block error"
-				ng-show="ClienteForm.sexo.$error.required">Obrigatorio</span>
+				ng-show="ClienteForm.sexo.$error.required"></span>
 		</div>
 	</div>
 
@@ -62,7 +62,7 @@
 				class="form-control" ng-model="cliente.celular"
 				placeholder="Informe o numero de celular do cliente"></input> <span
 				class="help-block error"
-				ng-show="ClienteForm.celular.$error.required">Obrigatorio</span>
+				ng-show="ClienteForm.celular.$error.required"></span>
 		</div>
 	</div>
 
@@ -85,7 +85,7 @@
 				required class="form-control" ng-model="cliente.contatoEmergencia"
 				placeholder="Informe o nome de contato para emergencia"></input> <span
 				class="help-block error"
-				ng-show="ClienteForm.contatoEmergencia.$error.required">Obrigatorio</span>
+				ng-show="ClienteForm.contatoEmergencia.$error.required"></span>
 		</div>
 	</div>
 
@@ -98,7 +98,7 @@
 				required class="form-control" ng-model="cliente.telefoneEmergencia"
 				placeholder="Informe o telefone de contato para emergencia"></input>
 			<span class="help-block error"
-				ng-show="ClienteForm.telefoneEmergencia.$error.required">Obrigatorio</span>
+				ng-show="ClienteForm.telefoneEmergencia.$error.required"></span>
 		</div>
 	</div>
 
@@ -111,7 +111,7 @@
 				required>
 				<option value="">Escolha uma Situacao</option>
 			</select> <span class="help-block error"
-				ng-show="ClienteForm.situacao.$error.required">Obrigatorio</span>
+				ng-show="ClienteForm.situacao.$error.required"></span>
 		</div>
 	</div>
 

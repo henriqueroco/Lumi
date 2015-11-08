@@ -1,15 +1,6 @@
-<div class="form-horizontal">
-	<div class="form-group">
-		<div class="col-md-offset-2 col-sm-2">
-			<a id="Create" name="Create" class="btn btn-primary"
-				href="#/Atendimentos/new"><span
-				class="glyphicon glyphicon-plus-sign"> Agendar</span></a>
-		</div>
-	</div>
-</div>
-<hr />
 <div>
-	<h3>Procurar Atendimento</h3>
+	<h3>Atendimentos</h3>
+	<hr />
 	<form id="AtendimentoSearch" class="form-horizontal">
 		<div class="form-group">
 			<label for="situacao" class="col-sm-2 control-label">Situacao</label>
@@ -23,9 +14,12 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-2 col-sm-10">
+				<a id="Create" name="Create" class="btn btn-primary"
+					href="#/Atendimentos/new"><span
+					class="glyphicon glyphicon-plus-sign"> Agendar </span></a>
 				<a id="Search" name="Search" class="btn btn-primary"
 					ng-click="performSearch()"><span
-					class="glyphicon glyphicon-search"></span> Procurar</a>
+					class="glyphicon glyphicon-search"></span> Pesquisar</a>
 			</div>
 		</div>
 	</form>

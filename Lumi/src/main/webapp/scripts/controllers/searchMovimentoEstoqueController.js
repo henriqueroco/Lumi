@@ -22,9 +22,12 @@ angular.module('lumi').controller('SearchMovimentoEstoqueController', function($
         "SAIDA"
     ];
     $scope.unidadeMedidaMovimentacaoList = [
-        "UND",
         "KG",
-        "L"
+        "G",
+        "MG",
+        "UND",
+        "L",
+        "ML"
     ];
 
     $scope.performSearch = function() {

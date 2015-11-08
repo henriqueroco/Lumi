@@ -10,9 +10,12 @@ angular.module('lumi').controller('NewMovimentoEstoqueController', function ($sc
     ];
     
     $scope.unidadeMedidaMovimentacaoList = [
-        "UND",
         "KG",
-        "L"
+        "G",
+        "MG",
+        "UND",
+        "L",
+        "ML"
     ];
     
     $scope.produtoList = ProdutoResource.queryAll(function(items){

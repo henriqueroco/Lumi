@@ -1,21 +1,12 @@
-<div class="form-horizontal">
-	<div class="form-group">
-		<div class="col-md-offset-2 col-sm-2">
-			<a id="Create" name="Create" class="btn btn-primary"
-				href="#/Esteticista/new"><span
-				class="glyphicon glyphicon-plus-sign"></span> Cadastrar Esteticista</a>
-		</div>
-	</div>
-</div>
-<hr />
 <div>
-	<h3>Procurar por Esteticista</h3>
+	<h3>Esteticista</h3>
+	<hr />
 	<form id="EsteticistaSearch" class="form-horizontal">
 		<div class="form-group">
 			<label for="nome" class="col-sm-2 control-label">Nome</label>
 			<div class="col-sm-10">
 				<input id="nome" name="nome" class="form-control" type="text"
-					ng-model="search.nome" placeholder="Enter the Esteticista Nome"></input>
+					ng-model="search.nome" placeholder="Informe o nome da esteticista para pesquisar"></input>
 			</div>
 		</div>
 		<div class="form-group">
@@ -23,15 +14,18 @@
 			<div class="col-sm-10">
 				<select id="tipo" name="tipo" class="form-control"
 					ng-model="search.tipo" ng-options="t as t for t in tipoList">
-					<option value="">Escolha um(a) Tipo</option>
+					<option value="">Escolha um Tipo</option>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-2 col-sm-10">
+				<a id="Create" name="Create" class="btn btn-primary"
+					href="#/Esteticista/new"><span
+					class="glyphicon glyphicon-plus-sign"></span> Cadastrar Esteticista</a>
 				<a id="Search" name="Search" class="btn btn-primary"
 					ng-click="performSearch()"><span
-					class="glyphicon glyphicon-search"></span> Procurar</a>
+					class="glyphicon glyphicon-search"></span> Pesquisar</a>
 			</div>
 		</div>
 	</form>
