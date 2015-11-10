@@ -17,8 +17,8 @@ angular.module('lumi').controller('NewClienteController', function ($scope, $loc
     $scope.logradouroList = LogradouroResource.queryAll(function(items){
         $scope.logradouroSelectionList = $.map(items, function(item) {
             return ( {
-                value : item.descricaoLogradouro+'-'+item.bairro.localidade.nomeCidade,
-                text : item.descricaoLogradouro+'-'+item.bairro.localidade.nomeCidade
+                value : item.id,
+                text : item.id
             });
         });
     });

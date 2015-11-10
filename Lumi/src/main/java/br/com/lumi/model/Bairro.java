@@ -21,6 +21,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Bairro implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static final String TABELA = "bairro";
 	private static final String ATRIBUTO_ID = "id";
 	private static final String ATRIBUTO_VERSION = "version";

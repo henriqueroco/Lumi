@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 import br.com.lumi.model.Produto;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name = Procedimento.TABELA)
@@ -38,7 +39,7 @@ public class Procedimento implements Serializable {
 	@Column(name = ATRIBUTO_DESCRICAO, nullable = false)
 	private String descricao;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Produto> produtos = new HashSet<Produto>();
 
 	public Long getId() {

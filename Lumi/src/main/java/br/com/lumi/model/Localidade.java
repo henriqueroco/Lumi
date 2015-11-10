@@ -25,6 +25,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Localidade implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static final String TABELA = "localidade";
 	private static final String ATRIBUTO_ID = "id";
 	private static final String ATRIBUTO_VERSION = "version";
