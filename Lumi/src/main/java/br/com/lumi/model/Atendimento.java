@@ -19,6 +19,10 @@ import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import br.lumi.server.enuns.ESituacaoAtendimento;
+import br.com.lumi.model.Cliente;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
+import br.com.lumi.model.Esteticista;
 @Entity
 @Table(name = Atendimento.TABELA)
 @XmlRootElement
@@ -30,7 +34,7 @@ public class Atendimento implements Serializable {
 	private static final String ATRIBUTO_DATA = "data";
 	private static final String ATRIBUTO_HORA_INICIO = "hora_inicio";
 	private static final String ATRIBUTO_HORA_FIM = "hora_fim";
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = ATRIBUTO_ID, updatable = false, nullable = false)
@@ -55,13 +59,13 @@ public class Atendimento implements Serializable {
 	private ESituacaoAtendimento situacao;
 
 	@OneToMany
-	private Set<Cliente> cliente = new HashSet<Cliente>();
-
-	@OneToMany
 	private Set<Procedimento> procedimento = new HashSet<Procedimento>();
 
-	@OneToMany
-	private Set<Esteticista> esteticista = new HashSet<Esteticista>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Cliente cliente;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Esteticista esteticista;
 
 	public Long getId() {
 		return this.id;
@@ -136,14 +140,6 @@ public class Atendimento implements Serializable {
 		this.situacao = situacao;
 	}
 
-	public Set<Cliente> getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(final Set<Cliente> cliente) {
-		this.cliente = cliente;
-	}
-
 	public Set<Procedimento> getProcedimento() {
 		return this.procedimento;
 	}
@@ -152,11 +148,19 @@ public class Atendimento implements Serializable {
 		this.procedimento = procedimento;
 	}
 
-	public Set<Esteticista> getEsteticista() {
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(final Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Esteticista getEsteticista() {
 		return this.esteticista;
 	}
 
-	public void setEsteticista(final Set<Esteticista> esteticista) {
+	public void setEsteticista(final Esteticista esteticista) {
 		this.esteticista = esteticista;
 	}
 }

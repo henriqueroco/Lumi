@@ -1,10 +1,14 @@
+<div class="form-horizontal">
+	<h3>Bairro</h3>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-sm-2"></div>
+	</div>
+</div>
+<hr />
 <div>
-	<h3>Bairros</h3>
-	<hr />
 	<form id="BairroSearch" class="form-horizontal">
 		<div class="form-group">
-			<label for="descricaoBairro" class="col-sm-2 control-label">Descricao
-				bairro</label>
+			<label for="descricaoBairro" class="col-sm-2 control-label">Descricao</label>
 			<div class="col-sm-10">
 				<input id="descricaoBairro" name="descricaoBairro"
 					class="form-control" type="text" ng-model="search.descricaoBairro"
@@ -16,8 +20,8 @@
 			<div class="col-sm-10">
 				<select id="localidade" name="localidade" class="form-control"
 					ng-model="search.localidade"
-					ng-options="l as l.nomeCidade for l in localidadeList">
-					<option value="">Escolha uma Localidade</option>
+					ng-options="l as l.id for l in localidadeList">
+					<option value="">Escolha uma localidade</option>
 				</select>
 			</div>
 		</div>
@@ -25,8 +29,7 @@
 			<div class="col-md-offset-2 col-sm-10">
 				<a id="Create" name="Create" class="btn btn-primary"
 					href="#/Bairros/new"><span
-					class="glyphicon glyphicon-plus-sign"></span> Cadastrar Bairro</a>
-				<a
+					class="glyphicon glyphicon-plus-sign"></span> Cadastrar</a> <a
 					id="Search" name="Search" class="btn btn-primary"
 					ng-click="performSearch()"><span
 					class="glyphicon glyphicon-search"></span> Pesquisar</a>
@@ -53,7 +56,6 @@
 			</tbody>
 		</table>
 	</div>
-
 	<ul class="pagination pagination-centered">
 		<li ng-class="{disabled:currentPage == 0}"><a id="prev" href
 			ng-click="previous()">«</a></li>

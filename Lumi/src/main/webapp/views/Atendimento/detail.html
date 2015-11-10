@@ -1,7 +1,7 @@
 <header ng-switch
 	on="$location.path().indexOf('/Atendimentos/new') > -1">
-	<h3 ng-switch-when="true">Agendar atendimento</h3>
-	<h3 ng-switch-when="false">Visualizar ou editar atendimento</h3>
+	<h3 ng-switch-when="true">Agendar</h3>
+	<h3 ng-switch-when="false">Atendimento</h3>
 </header>
 <form id="AtendimentoForm" name="AtendimentoForm"
 	class="form-horizontal" role="form">
@@ -12,43 +12,43 @@
 		<label for="data" class="col-sm-2 control-label">Data</label>
 		<div id="dataControls" class="col-sm-10">
 			<date id="data" name="data" required ng-model="atendimento.data"
-				placeholder="Informa a data do Atendimento"></date>
+				placeholder="Enter the Atendimento Data"></date>
 			<span class="help-block error"
-				ng-show="AtendimentoForm.data.$error.required">
-				</span> <span class="help-block error"
+				ng-show="AtendimentoForm.data.$error.required"></span> <span
+				class="help-block error"
 				ng-show="AtendimentoForm.data.$error.dateFormat">Data no 
-				fromato "aaaa-MM-dd" (ex. 2015-12-01)</span>
+				formato "dd-MM-aaaa" (ex. 01-12-2015)</span>
 		</div>
 	</div>
 
 	<div class="form-group"
 		ng-class="{'has-error': AtendimentoForm.horaInicio.$invalid}">
 		<label for="horaInicio" class="col-sm-2 control-label">Hora
-			inicio</label>
+			Inicio</label>
 		<div id="horaInicioControls" class="col-sm-10">
 			<time id="horaInicio" name="horaInicio" required
 				ng-model="atendimento.horaInicio"
-				placeholder="Informe a hora de inicio do atendimento"></time>
+				placeholder="Enter the Atendimento Hora Inicio"></time>
 			<span class="help-block error"
-				ng-show="AtendimentoForm.horaInicio.$error.required">
-				</span> <span class="help-block error"
+				ng-show="AtendimentoForm.horaInicio.$error.required"></span> <span
+				class="help-block error"
 				ng-show="AtendimentoForm.horaInicio.$error.timeFormat">Hora no 
-				fromato "hh:mm" ou "hh:mm:ss" (ex. 05:00 ou 22:00:00)</span>
+				fromato "hh:mm" (ex. 05:00)</span>
 		</div>
 	</div>
 
 	<div class="form-group"
 		ng-class="{'has-error': AtendimentoForm.horaFim.$invalid}">
-		<label for="horaFim" class="col-sm-2 control-label">Hora termino</label>
+		<label for="horaFim" class="col-sm-2 control-label">Hora Fim</label>
 		<div id="horaFimControls" class="col-sm-10">
 			<time id="horaFim" name="horaFim" required
 				ng-model="atendimento.horaFim"
-				placeholder="Informa a hora de termino do atendimento"></time>
+				placeholder="Enter the Atendimento Hora Fim"></time>
 			<span class="help-block error"
-				ng-show="AtendimentoForm.horaFim.$error.required">
-				</span> <span class="help-block error"
+				ng-show="AtendimentoForm.horaFim.$error.required"></span> <span
+				class="help-block error"
 				ng-show="AtendimentoForm.horaFim.$error.timeFormat">Hora no 
-				fromato "hh:mm" ou "hh:mm:ss" (ex. 05:00 ou 22:00:00)</span>
+				fromato "hh:mm" (ex. 05:00)</span>
 		</div>
 	</div>
 
@@ -59,18 +59,6 @@
 			<select id="situacao" name="situacao" class="form-control"
 				ng-model="atendimento.situacao" ng-options="s for s in situacaoList">
 				<option value="">Escolha uma Situacao</option>
-			</select>
-		</div>
-	</div>
-
-	<div class="form-group"
-		ng-class="{'has-error': AtendimentoForm.cliente.$invalid}">
-		<label for="cliente" class="col-sm-2 control-label">Cliente</label>
-		<div id="clienteControls" class="col-sm-10">
-			<select id="cliente" name="cliente" multiple class="form-control"
-				ng-model="clienteSelection"
-				ng-options="c.text for c in clienteSelectionList">
-				<option value="">Escolha um Cliente</option>
 			</select>
 		</div>
 	</div>
@@ -88,11 +76,23 @@
 	</div>
 
 	<div class="form-group"
+		ng-class="{'has-error': AtendimentoForm.cliente.$invalid}">
+		<label for="cliente" class="col-sm-2 control-label">Cliente</label>
+		<div id="clienteControls" class="col-sm-10">
+			<select id="cliente" name="cliente" class="form-control"
+				ng-model="clienteSelection"
+				ng-options="c.text for c in clienteSelectionList">
+				<option value="">Escolha um Cliente</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group"
 		ng-class="{'has-error': AtendimentoForm.esteticista.$invalid}">
 		<label for="esteticista" class="col-sm-2 control-label">Esteticista</label>
 		<div id="esteticistaControls" class="col-sm-10">
-			<select id="esteticista" name="esteticista" multiple
-				class="form-control" ng-model="esteticistaSelection"
+			<select id="esteticista" name="esteticista" class="form-control"
+				ng-model="esteticistaSelection"
 				ng-options="e.text for e in esteticistaSelectionList">
 				<option value="">Escolha uma Esteticista</option>
 			</select>
@@ -106,7 +106,7 @@
 				class="btn btn-primary"
 				ng-disabled="isClean() || AtendimentoForm.$invalid"
 				ng-click="save()">
-				<span class="glyphicon glyphicon-ok-sign"></span> Salvar
+				<span class="glyphicon glyphicon-ok-sign"></span> Savar
 			</button>
 			<button id="cancel" name="cancel" class="btn btn-default"
 				ng-click="cancel()">

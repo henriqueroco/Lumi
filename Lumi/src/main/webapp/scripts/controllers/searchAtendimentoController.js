@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('SearchAtendimentoController', function($scope, $http, $filter, AtendimentoResource , ClienteResource, ProcedimentoResource, EsteticistaResource) {
+angular.module('lumi').controller('SearchAtendimentoController', function($scope, $http, $filter, AtendimentoResource , ProcedimentoResource, ClienteResource, EsteticistaResource) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -24,6 +24,8 @@ angular.module('lumi').controller('SearchAtendimentoController', function($scope
         "NAOREALIZADO",
         "CANCELADO"
     ];
+    $scope.clienteList = ClienteResource.queryAll();
+    $scope.esteticistaList = EsteticistaResource.queryAll();
 
     $scope.performSearch = function() {
         $scope.searchResults = AtendimentoResource.queryAll(function(){

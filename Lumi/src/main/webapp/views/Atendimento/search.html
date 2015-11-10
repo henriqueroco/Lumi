@@ -1,14 +1,17 @@
+<div class="form-horizontal">
+	<h3>Agenda</h3>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-sm-2"></div>
+	</div>
+</div>
+<hr />
 <div>
-	<h3>Atendimentos</h3>
-	<hr />
 	<form id="AtendimentoSearch" class="form-horizontal">
 		<div class="form-group">
-			<label for="situacao" class="col-sm-2 control-label">Situacao</label>
-			<div class="col-sm-10">
-				<select id="situacao" name="situacao" class="form-control"
-					ng-model="search.situacao"
-					ng-options="s as s for s in situacaoList">
-					<option value="">Escolha uma situacao</option>
+			<label for="data" class="col-sm-2 control-label">Data</label>
+			<div id="dataControls" class="col-sm-10">
+				<select id="data" name="data" class="form-control" ng-model="search.data" ng-options="e as e.id for e in esteticistaList">
+					<option value="">Informe a data</option>
 				</select>
 			</div>
 		</div>
@@ -16,9 +19,9 @@
 			<div class="col-md-offset-2 col-sm-10">
 				<a id="Create" name="Create" class="btn btn-primary"
 					href="#/Atendimentos/new"><span
-					class="glyphicon glyphicon-plus-sign"> Agendar </span></a>
-				<a id="Search" name="Search" class="btn btn-primary"
-					ng-click="performSearch()"><span
+					class="glyphicon glyphicon-plus-sign"></span> Agendar</a>
+				<a id="Search"
+					name="Search" class="btn btn-primary" ng-click="performSearch()"><span
 					class="glyphicon glyphicon-search"></span> Pesquisar</a>
 			</div>
 		</div>
@@ -34,6 +37,8 @@
 					<th>Hora Inicio</th>
 					<th>Hora Fim</th>
 					<th>Situacao</th>
+					<th>Cliente</th>
+					<th>Esteticista</th>
 				</tr>
 			</thead>
 			<tbody id="search-results-body">
@@ -46,6 +51,8 @@
 					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.horaFim|
 							date:'mediumTime'}}</a></td>
 					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.situacao}}</a></td>
+					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.cliente.id}}</a></td>
+					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.esteticista.id}}</a></td>
 				</tr>
 			</tbody>
 		</table>

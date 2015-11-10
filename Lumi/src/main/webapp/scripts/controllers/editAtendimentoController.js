@@ -1,6 +1,6 @@
 
 
-angular.module('lumi').controller('EditAtendimentoController', function($scope, $routeParams, $location, flash, AtendimentoResource , ClienteResource, ProcedimentoResource, EsteticistaResource) {
+angular.module('lumi').controller('EditAtendimentoController', function($scope, $routeParams, $location, flash, AtendimentoResource , ProcedimentoResource, ClienteResource, EsteticistaResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -9,35 +9,14 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
         var successCallback = function(data){
             self.original = data;
             $scope.atendimento = new AtendimentoResource(self.original);
-            ClienteResource.queryAll(function(items) {
-                $scope.clienteSelectionList = $.map(items, function(item) {
-                    var wrappedObject = {
-                        id : item.nome
-                    };
-                    var labelObject = {
-                        value : item.nome,
-                        text : item.nome
-                    };
-                    if($scope.atendimento.cliente){
-                        $.each($scope.atendimento.cliente, function(idx, element) {
-                            if(item.id == element.id) {
-                                $scope.clienteSelection.push(labelObject);
-                                $scope.atendimento.cliente.push(wrappedObject);
-                            }
-                        });
-                        self.original.cliente = $scope.atendimento.cliente;
-                    }
-                    return labelObject;
-                });
-            });
             ProcedimentoResource.queryAll(function(items) {
                 $scope.procedimentoSelectionList = $.map(items, function(item) {
                     var wrappedObject = {
-                        id : item.nome
+                        id : item.id
                     };
                     var labelObject = {
-                        value : item.nome,
-                        text : item.nome
+                        value : item.id,
+                        text : item.id
                     };
                     if($scope.atendimento.procedimento){
                         $.each($scope.atendimento.procedimento, function(idx, element) {
@@ -51,22 +30,35 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
                     return labelObject;
                 });
             });
+            ClienteResource.queryAll(function(items) {
+                $scope.clienteSelectionList = $.map(items, function(item) {
+                    var wrappedObject = {
+                        id : item.id
+                    };
+                    var labelObject = {
+                        value : item.id,
+                        text : item.id
+                    };
+                    if($scope.atendimento.cliente && item.id == $scope.atendimento.cliente.id) {
+                        $scope.clienteSelection = labelObject;
+                        $scope.atendimento.cliente = wrappedObject;
+                        self.original.cliente = $scope.atendimento.cliente;
+                    }
+                    return labelObject;
+                });
+            });
             EsteticistaResource.queryAll(function(items) {
                 $scope.esteticistaSelectionList = $.map(items, function(item) {
                     var wrappedObject = {
-                        id : item.nome
+                        id : item.id
                     };
                     var labelObject = {
-                        value : item.nome,
-                        text : item.nome
+                        value : item.id,
+                        text : item.id
                     };
-                    if($scope.atendimento.esteticista){
-                        $.each($scope.atendimento.esteticista, function(idx, element) {
-                            if(item.id == element.id) {
-                                $scope.esteticistaSelection.push(labelObject);
-                                $scope.atendimento.esteticista.push(wrappedObject);
-                            }
-                        });
+                    if($scope.atendimento.esteticista && item.id == $scope.atendimento.esteticista.id) {
+                        $scope.esteticistaSelection = labelObject;
+                        $scope.atendimento.esteticista = wrappedObject;
                         self.original.esteticista = $scope.atendimento.esteticista;
                     }
                     return labelObject;
@@ -125,17 +117,6 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
         "NAOREALIZADO",  
         "CANCELADO"  
     ];
-    $scope.clienteSelection = $scope.clienteSelection || [];
-    $scope.$watch("clienteSelection", function(selection) {
-        if (typeof selection != 'undefined' && $scope.atendimento) {
-            $scope.atendimento.cliente = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.atendimento.cliente.push(collectionItem);
-            });
-        }
-    });
     $scope.procedimentoSelection = $scope.procedimentoSelection || [];
     $scope.$watch("procedimentoSelection", function(selection) {
         if (typeof selection != 'undefined' && $scope.atendimento) {
@@ -147,15 +128,16 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
             });
         }
     });
-    $scope.esteticistaSelection = $scope.esteticistaSelection || [];
+    $scope.$watch("clienteSelection", function(selection) {
+        if (typeof selection != 'undefined') {
+            $scope.atendimento.cliente = {};
+            $scope.atendimento.cliente.id = selection.value;
+        }
+    });
     $scope.$watch("esteticistaSelection", function(selection) {
-        if (typeof selection != 'undefined' && $scope.atendimento) {
-            $scope.atendimento.esteticista = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.atendimento.esteticista.push(collectionItem);
-            });
+        if (typeof selection != 'undefined') {
+            $scope.atendimento.esteticista = {};
+            $scope.atendimento.esteticista.id = selection.value;
         }
     });
     

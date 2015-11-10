@@ -57,7 +57,7 @@ public class AtendimentoEndpoint {
 	public Response findById(@PathParam("id") Long id) {
 		TypedQuery<Atendimento> findByIdQuery = em
 				.createQuery(
-						"SELECT DISTINCT a FROM Atendimento a LEFT JOIN FETCH a.cliente LEFT JOIN FETCH a.procedimento LEFT JOIN FETCH a.esteticista WHERE a.id = :entityId ORDER BY a.id",
+						"SELECT DISTINCT a FROM Atendimento a LEFT JOIN FETCH a.procedimento LEFT JOIN FETCH a.cliente LEFT JOIN FETCH a.esteticista WHERE a.id = :entityId ORDER BY a.id",
 						Atendimento.class);
 		findByIdQuery.setParameter("entityId", id);
 		Atendimento entity;
@@ -79,7 +79,7 @@ public class AtendimentoEndpoint {
 			@QueryParam("max") Integer maxResult) {
 		TypedQuery<Atendimento> findAllQuery = em
 				.createQuery(
-						"SELECT DISTINCT a FROM Atendimento a LEFT JOIN FETCH a.cliente LEFT JOIN FETCH a.procedimento LEFT JOIN FETCH a.esteticista ORDER BY a.id",
+						"SELECT DISTINCT a FROM Atendimento a LEFT JOIN FETCH a.procedimento LEFT JOIN FETCH a.cliente LEFT JOIN FETCH a.esteticista ORDER BY a.id",
 						Atendimento.class);
 		if (startPosition != null) {
 			findAllQuery.setFirstResult(startPosition);
