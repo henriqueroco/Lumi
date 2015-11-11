@@ -7,12 +7,19 @@
 <hr />
 <div>
 	<form id="AtendimentoSearch" class="form-horizontal">
-		<div class="form-group">
+		<div class="form-group" ng-class="{'has-error': AtendimentoForm.data.$invalid}">
 			<label for="data" class="col-sm-2 control-label">Data</label>
 			<div id="dataControls" class="col-sm-10">
-				<select id="data" name="data" class="form-control" ng-model="search.data" ng-options="e as e.id for e in esteticistaList">
-					<option value="">Informe a data</option>
-				</select>
+				<date id="data" name="data" required ng-model="search.data" ng-options="e as e.id for e in atendimentoLis"
+				placeholder="Enter the Atendimento Data"></date>
+				<span class="help-block error"
+				ng-show="AtendimentoForm.data.$error.required"></span> <span
+				class="help-block error"
+				ng-show="AtendimentoForm.data.$error.dateFormat">Data no 
+				formato "dd-MM-aaaa" (ex. 01-12-2015)</span>
+<!-- 				<select id="data" name="data" class="form-control" ng-model="search.data" ng-options="e as e.id for e in esteticistaList"> -->
+<!-- 					<option value="">Informe a data</option> -->
+<!-- 				</select> -->
 			</div>
 		</div>
 		<div class="form-group">
