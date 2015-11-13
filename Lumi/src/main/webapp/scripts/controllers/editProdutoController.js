@@ -36,7 +36,7 @@ angular
 									.setMessage(
 											{
 												'type' : 'success',
-												'text' : 'The produto was updated successfully.'
+												'text' : 'Produto alterado consucesso.'
 											}, true);
 							$scope.get();
 						};

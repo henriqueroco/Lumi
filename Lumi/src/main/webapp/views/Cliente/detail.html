@@ -19,7 +19,7 @@
 		<label for="cpf" class="col-sm-2 control-label">CPF</label>
 		<div id="cpfControls" class="col-sm-10">
 			<input id="cpf" name="cpf" type="text" required class="form-control"
-				ng-model="cliente.cpf" placeholder="Informe o CPF do cliente"></input>
+				ng-model="cliente.cpf" placeholder="999.999.999-99"></input>
 			<span class="help-block error"
 				ng-show="ClienteForm.cpf.$error.required"></span> <span
 				class="help-block error" ng-show="ClienteForm.cpf.$error.cpfFormat">Formato
@@ -60,7 +60,7 @@
 		<div id="celularControls" class="col-sm-10">
 			<input id="celular" name="celular" type="text" required
 				class="form-control" ng-model="cliente.celular"
-				placeholder="Informe o numero de celular do cliente"></input> <span
+				placeholder="(99)99999-9999"></input> <span
 				class="help-block error"
 				ng-show="ClienteForm.celular.$error.required"></span>
 		</div>
@@ -72,7 +72,7 @@
 		<div id="telefoneControls" class="col-sm-10">
 			<input id="telefone" name="telefone" type="text" class="form-control"
 				ng-model="cliente.telefone"
-				placeholder="Informe o numero de telefone do cliente"></input>
+				placeholder="(99)99999-9999"></input>
 		</div>
 	</div>
 
@@ -96,7 +96,7 @@
 		<div id="telefoneEmergenciaControls" class="col-sm-10">
 			<input id="telefoneEmergencia" name="telefoneEmergencia" type="text"
 				required class="form-control" ng-model="cliente.telefoneEmergencia"
-				placeholder="Informe o telefone de contato para emergencia"></input>
+				placeholder="(99)99999-9999"></input>
 			<span class="help-block error"
 				ng-show="ClienteForm.telefoneEmergencia.$error.required"></span>
 		</div>

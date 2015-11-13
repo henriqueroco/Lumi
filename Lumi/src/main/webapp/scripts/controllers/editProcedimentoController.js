@@ -44,7 +44,7 @@ angular.module('lumi').controller('EditProcedimentoController', function($scope,
 
     $scope.save = function() {
         var successCallback = function(){
-            flash.setMessage({'type':'success','text':'The procedimento was updated successfully.'}, true);
+            flash.setMessage({'type':'success','text':'Procedimento alterado consucesso.'}, true);
             $scope.get();
         };
         var errorCallback = function(response) {

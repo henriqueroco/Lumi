@@ -21,8 +21,10 @@ import javax.persistence.FetchType;
 @XmlRootElement
 public class Procedimento implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9078442777396013297L;
 	static final String TABELA = "procedimento";
 	private static final String ATRIBUTO_ID = "id";
 	private static final String VERSAO = "version";

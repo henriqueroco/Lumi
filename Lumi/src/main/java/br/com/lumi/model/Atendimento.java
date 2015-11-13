@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.lumi.server.enuns.ESituacaoAtendimento;
 import br.com.lumi.model.Cliente;
 import javax.persistence.ManyToOne;
@@ -28,6 +30,10 @@ import br.com.lumi.model.Esteticista;
 @XmlRootElement
 public class Atendimento implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9053383285627116721L;
 	static final String TABELA = "atendimento";
 	private static final String ATRIBUTO_ID = "id";
 	private static final String ATRIBUTO_VERSION = "version";
@@ -45,14 +51,17 @@ public class Atendimento implements Serializable {
 
 	@Column(name = ATRIBUTO_DATA, nullable = false)
 	@Temporal(TemporalType.DATE)
+//	@JsonFormat(pattern = "dd-MM-yyyy") 
 	private Date data;
 
 	@Column(name = ATRIBUTO_HORA_INICIO, nullable = false)
 	@Temporal(TemporalType.TIME)
+	@JsonFormat(pattern = "HH:mm:ss") 
 	private Date horaInicio;
 
 	@Column(name = ATRIBUTO_HORA_FIM, nullable = false)
 	@Temporal(TemporalType.TIME)
+	@JsonFormat(pattern = "HH:mm:ss") 
 	private Date horaFim;
 
 	@Enumerated

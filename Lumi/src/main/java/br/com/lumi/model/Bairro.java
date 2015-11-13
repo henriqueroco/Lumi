@@ -24,7 +24,7 @@ public class Bairro implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1991229892002832947L;
 	static final String TABELA = "bairro";
 	private static final String ATRIBUTO_ID = "id";
 	private static final String ATRIBUTO_VERSION = "version";

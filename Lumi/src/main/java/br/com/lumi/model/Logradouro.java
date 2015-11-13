@@ -21,6 +21,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Logradouro implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4794835654168672976L;
 	static final String TABELA = "logradouro";
 	private static final String ATRIBUTO_ID = "id";
 	private static final String ATIBUTO_VERSION = "version";

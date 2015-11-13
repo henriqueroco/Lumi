@@ -40,7 +40,7 @@ angular.module('lumi').controller('EditBairroController', function($scope, $rout
 
     $scope.save = function() {
         var successCallback = function(){
-            flash.setMessage({'type':'success','text':'The bairro was updated successfully.'}, true);
+            flash.setMessage({'type':'success','text':'Bairro alterado consucesso.'}, true);
             $scope.get();
         };
         var errorCallback = function(response) {

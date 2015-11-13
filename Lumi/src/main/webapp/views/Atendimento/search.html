@@ -7,29 +7,26 @@
 <hr />
 <div>
 	<form id="AtendimentoSearch" class="form-horizontal">
-		<div class="form-group" ng-class="{'has-error': AtendimentoForm.data.$invalid}">
-			<label for="data" class="col-sm-2 control-label">Data</label>
-			<div id="dataControls" class="col-sm-10">
-				<date id="data" name="data" required ng-model="search.data" ng-options="e as e.id for e in atendimentoLis"
-				placeholder="Enter the Atendimento Data"></date>
-				<span class="help-block error"
-				ng-show="AtendimentoForm.data.$error.required"></span> <span
-				class="help-block error"
-				ng-show="AtendimentoForm.data.$error.dateFormat">Data no 
-				formato "dd-MM-aaaa" (ex. 01-12-2015)</span>
-<!-- 				<select id="data" name="data" class="form-control" ng-model="search.data" ng-options="e as e.id for e in esteticistaList"> -->
-<!-- 					<option value="">Informe a data</option> -->
-<!-- 				</select> -->
-			</div>
-		</div>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="data" class="col-sm-2 control-label">Data</label> -->
+<!-- 			<div id="dataControls" class="col-sm-10"> -->
+<!-- 			<date id="data" name="data" required ng-model="search.data"></date> -->
+<!-- 			<span class="help-block error" -->
+<!-- 				ng-show="AtendimentoForm.data.$error.required"></span>  -->
+<!-- 			<span class="help-block error" --> 
+<!-- 				ng-show="AtendimentoForm.data.$error.dateFormat"> --> 
+<!-- 				Data no	formato "dd-MM-aaaa" (ex. 01-12-2015) --> 
+<!-- 				</span> --> 
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<div class="form-group">
 			<div class="col-md-offset-2 col-sm-10">
 				<a id="Create" name="Create" class="btn btn-primary"
 					href="#/Atendimentos/new"><span
 					class="glyphicon glyphicon-plus-sign"></span> Agendar</a>
-				<a id="Search"
-					name="Search" class="btn btn-primary" ng-click="performSearch()"><span
-					class="glyphicon glyphicon-search"></span> Pesquisar</a>
+<!-- 				<a id="Search" -->
+<!-- 					name="Search" class="btn btn-primary" ng-click="performSearch()"><span -->
+<!-- 					class="glyphicon glyphicon-search"></span> Pesquisar</a> -->
 			</div>
 		</div>
 	</form>
@@ -58,8 +55,8 @@
 					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.horaFim|
 							date:'mediumTime'}}</a></td>
 					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.situacao}}</a></td>
-					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.cliente.id}}</a></td>
-					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.esteticista.id}}</a></td>
+					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.cliente.nome}}</a></td>
+					<td><a href="#/Atendimentos/edit/{{result.id}}">{{result.esteticista.nome}}</a></td>
 				</tr>
 			</tbody>
 		</table>

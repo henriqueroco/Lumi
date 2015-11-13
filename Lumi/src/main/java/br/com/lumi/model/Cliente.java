@@ -35,7 +35,7 @@ public class Cliente implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1662149371415257231L;
 	private static final String ATRIBUTO_ID = "id";
 	private static final String VERSAO = "version";
 	private static final String ATRIBUTO_NOME = "nome";

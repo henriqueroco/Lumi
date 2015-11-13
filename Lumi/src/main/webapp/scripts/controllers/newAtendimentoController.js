@@ -8,7 +8,7 @@ angular.module('lumi').controller('NewAtendimentoController', function ($scope, 
         "MARCADO",
         "CONFIRMADO",
         "REALIZADO",
-        "NAOREALIZADO",
+        "NAO REALIZADO",
         "CANCELADO"
     ];
     

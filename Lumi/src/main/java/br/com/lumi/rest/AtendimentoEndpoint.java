@@ -79,7 +79,7 @@ public class AtendimentoEndpoint {
 			@QueryParam("max") Integer maxResult) {
 		TypedQuery<Atendimento> findAllQuery = em
 				.createQuery(
-						"SELECT DISTINCT a FROM Atendimento a LEFT JOIN FETCH a.procedimento LEFT JOIN FETCH a.cliente LEFT JOIN FETCH a.esteticista ORDER BY a.id",
+						"SELECT DISTINCT a FROM Atendimento a LEFT JOIN FETCH a.procedimento LEFT JOIN FETCH a.cliente LEFT JOIN FETCH a.esteticista ORDER BY a.data",
 						Atendimento.class);
 		if (startPosition != null) {
 			findAllQuery.setFirstResult(startPosition);

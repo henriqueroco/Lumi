@@ -23,7 +23,7 @@ angular.module('lumi').controller('EditEsteticistaController', function($scope, 
 
     $scope.save = function() {
         var successCallback = function(){
-            flash.setMessage({'type':'success','text':'The esteticista was updated successfully.'}, true);
+            flash.setMessage({'type':'success','text':'Esteticista alterado consucesso.'}, true);
             $scope.get();
         };
         var errorCallback = function(response) {

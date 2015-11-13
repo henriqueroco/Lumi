@@ -18,6 +18,10 @@ import javax.persistence.TemporalType;
 @Table(name = "estoque")
 public class Estoque implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8930777353391985367L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "id", updatable = false, nullable = false)

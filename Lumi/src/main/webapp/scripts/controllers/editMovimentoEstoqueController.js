@@ -65,7 +65,7 @@ angular.module('lumi').controller('EditMovimentoEstoqueController', function($sc
 
     $scope.save = function() {
         var successCallback = function(){
-            flash.setMessage({'type':'success','text':'The movimentoEstoque was updated successfully.'}, true);
+            flash.setMessage({'type':'success','text':'Movimento de estoque alterado consucesso.'}, true);
             $scope.get();
         };
         var errorCallback = function(response) {

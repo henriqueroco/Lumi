@@ -29,6 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Produto implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2545463717178402165L;
 	static final String TABELA = "produto";
 	private static final String ATRIBUTO_ID = "id";
 	private static final String ATRIBUTO_VERSION = "version";

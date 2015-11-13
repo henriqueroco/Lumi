@@ -78,7 +78,7 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
 
     $scope.save = function() {
         var successCallback = function(){
-            flash.setMessage({'type':'success','text':'The atendimento was updated successfully.'}, true);
+            flash.setMessage({'type':'success','text':'Atendimento alterado consucesso.'}, true);
             $scope.get();
         };
         var errorCallback = function(response) {
@@ -114,7 +114,7 @@ angular.module('lumi').controller('EditAtendimentoController', function($scope, 
         "MARCADO",  
         "CONFIRMADO",  
         "REALIZADO",  
-        "NAOREALIZADO",  
+        "NAO REALIZADO",  
         "CANCELADO"  
     ];
     $scope.procedimentoSelection = $scope.procedimentoSelection || [];

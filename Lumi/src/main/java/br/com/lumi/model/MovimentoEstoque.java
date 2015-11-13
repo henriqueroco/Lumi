@@ -36,6 +36,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class MovimentoEstoque implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3568804317515531996L;
 	private static final String ATRIBUTO_ID = "id";
 	private static final String ATRIBUTO_VERSION = "version";
 	private static final String ATRIBUTO_DATA_MOVIMENTACAO = "data_movimentacao";

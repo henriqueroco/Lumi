@@ -40,7 +40,7 @@ angular.module('lumi').controller('EditLogradouroController', function($scope, $
 
     $scope.save = function() {
         var successCallback = function(){
-            flash.setMessage({'type':'success','text':'The logradouro was updated successfully.'}, true);
+            flash.setMessage({'type':'success','text':'Logradouro alterado consucesso.'}, true);
             $scope.get();
         };
         var errorCallback = function(response) {

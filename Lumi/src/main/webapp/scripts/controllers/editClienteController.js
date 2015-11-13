@@ -40,7 +40,7 @@ angular.module('lumi').controller('EditClienteController', function($scope, $rou
 
     $scope.save = function() {
         var successCallback = function(){
-            flash.setMessage({'type':'success','text':'The cliente was updated successfully.'}, true);
+            flash.setMessage({'type':'success','text':'Cliente alterado consucesso.'}, true);
             $scope.get();
         };
         var errorCallback = function(response) {

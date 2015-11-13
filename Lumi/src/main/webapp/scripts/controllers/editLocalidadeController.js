@@ -23,7 +23,7 @@ angular.module('lumi').controller('EditLocalidadeController', function($scope, $
 
     $scope.save = function() {
         var successCallback = function(){
-            flash.setMessage({'type':'success','text':'The localidade was updated successfully.'}, true);
+            flash.setMessage({'type':'success','text':'Localidade alterado consucesso.'}, true);
             $scope.get();
         };
         var errorCallback = function(response) {
@@ -86,6 +86,7 @@ angular.module('lumi').controller('EditLocalidadeController', function($scope, $
         "EX"  
     ];
     $scope.paisList = [
+        "BRASIL",  
         "AFEGANISTAO",  
         "AFRICADOSUL",  
         "AKROTIRI",  
@@ -121,7 +122,6 @@ angular.module('lumi').controller('EditLocalidadeController', function($scope, $
         "BOLIVIA",  
         "BOSNIAEHERZEGOVINA",  
         "BOTSUANA",  
-        "BRASIL",  
         "BRUNEI",  
         "BULGARIA",  
         "BURQUINAFASO",  
